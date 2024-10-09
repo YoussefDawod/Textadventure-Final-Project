@@ -13,11 +13,11 @@ app.use("/app2", app2);
 /*  Mount App3 */
 const app3 = require("./App3/Text.js");
 /*  Mounts App3 at the '/app3' endpoint  */
-app.use("/app3", app3);
+app.use("/api/text", app3);
 /*  Mount App4 */
-const app4 = require("./App4/Image.js");
+const app4 = require("./App4/Straico-Image.js");
 /*  Mounts App4 at the '/app4' endpoint  */
-app.use("/app4", app4);
+app.use("/api/image", app4);
 /* Start the server */
 const port = 5000;
 app.listen(port, () => {
