@@ -26,6 +26,8 @@ myHeaders.append("Content-Type", "application/json");
 var raw = JSON.stringify({
   model: "anthropic/claude-3-haiku:beta",
 
+
+
   message: `Eine Kurze Geschichte rund um ${
     keyWords + bindingWords
   } mit 1-2 Sätzen Text. Danach bitte eine Zeile freilassen. Nun gebe bitte 3 Auswahlmöglichkeiten welche die Geschichte weiterschreiben. 
@@ -40,6 +42,8 @@ var raw2 = JSON.stringify({
   Und es sollte in dieser Form zurückkommen. Die Geschichte sollte nur dort landen wo Text steht. Hier ist die Form. ${form}. 
   Und danach keine Worte mehr. `,
 
+
+
 });
 
 var requestOptions = {
@@ -48,6 +52,7 @@ var requestOptions = {
   body: raw,
   redirect: "follow",
 };
+
 
 
 var requestOptions2 = {
@@ -104,6 +109,63 @@ async function fetch2() {
     console.log(error);
   }
 }
+
+
+var requestOptions2 = {
+  method: "POST",
+  headers: myHeaders,
+  body: raw2,
+  redirect: "follow",
+};
+
+fetch2();
+
+async function fetchStart() {
+  try {
+    let newData;
+    let endResult;
+    const response = await fetch(
+      "https://api.straico.com/v0/prompt/completion",
+      requestOptions
+    );
+    const jsondata = await response.json();
+    newData = jsondata.data.completion.choices[0].message.content;
+    endResult = newData.split(":").splice(1).join(":");
+    if (endResult != (undefined || ``)) {
+      console.log(endResult);
+      showSite(endResult);
+    } else {
+      fetchStart();
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+async function fetch2() {
+  try {
+    let newData;
+    let endResult;
+    const response = await fetch(
+      "https://api.straico.com/v0/prompt/completion",
+      requestOptions2
+    );
+    const jsondata = await response.json();
+    newData = jsondata.data.completion.choices[0].message.content;
+    endResult = newData.split(":").splice(1).join(":");
+    final = `{ "1":`;
+    finalResult = final + endResult;
+    if(finalResult != (undefined || ``)) {
+      console.log(finalResult);
+      showSite(finalResult);
+    } else {
+      fetch2();
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 
 function showSite(variable) {
   // Define routes for App2
