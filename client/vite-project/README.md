@@ -1,136 +1,136 @@
-# React + Vite
+# KI Text-Adventure – Projektplan
 
-# Frontend
+## 1. Projektidee
 
-## 1. Startseite (Homepage)
+Das KI Text-Adventure ist ein interaktives Spiel, bei dem der Spieler durch Texteingaben eine Geschichte steuert. Das Besondere an diesem Projekt ist, dass die Spielwelt sowohl textuell als auch visuell durch KI generiert wird. Die KI erstellt nicht nur die Erzählung, sondern auch die passenden Bilder zur aktuellen Spielsituation. Ziel ist es, eine immersive und dynamische Spielerfahrung zu bieten, die durch Text und Bild getragen wird.
 
-Die Startseite zeigt folgende Elemente, die rechts neben dem Profilbereich oben in einer horizontalen Leiste angeordnet sind. Nur das Logo bleibt oben links:
+## 2. Technische Basis
 
-Logo: Oben links. Klickbar und führt den Benutzer immer zur Startseite zurück.
+Texterzeugung (Straico): Straico bietet Zugang zu mehreren modernen Sprachmodellen (z.B. ChatGPT-4, Claude, Gemma). Es wird genutzt, um die Textinhalte für das Spiel zu generieren.
 
-Profilbereich: Direkt neben dem Logo, oben rechts. Der Benutzer kann hier auf seine gespeicherten und gelikten Storys zugreifen (wenn er eingeloggt ist).
+Bildgenerierung (Supermachine): Supermachine verwendet Stable Diffusion und Flux, um visuelle Darstellungen der Spielwelt zu erzeugen. Es wird über eine API eingebunden, um basierend auf der KI-Erzählung Bilder zu generieren.
 
-Story-Bereich: In der horizontalen Leiste neben dem Profilbereich. Klickt der Benutzer darauf, wird er zu einer Liste von vorgefertigten Storys (Szenarien) und der Möglichkeit, eigene Storys zu erstellen, weitergeleitet.
 
-About: Ebenfalls in der horizontalen Leiste. Hier wird das Spiel und das Entwicklerteam beschrieben.
+## 3. Benutzererfahrung (UX)
 
-Kontakt: Ein Button in der Leiste, der den Benutzer zu einer Kontaktseite weiterleitet, wo er das Entwicklerteam kontaktieren kann.
+### 3.1 Einführung und Tutorial
 
-Registrierung und Anmeldung: In der gleichen Leiste, wo der Benutzer sich registrieren oder anmelden kann.
+Ein kurzes, interaktives Tutorial führt die Spieler in die Mechaniken und Möglichkeiten des Spiels ein.
 
+Dynamische Anleitung: Scroll-Effekte und Animationen zeigen die Spielmechaniken schrittweise.
 
-### Hinweise:
 
-Diese obere Leiste mit den Elementen bleibt auf allen Seiten sichtbar und verschwindet nicht beim Scrollen.
+### 3.2 Interaktivität und Steuerung
 
-Die Seite hat ein Hintergrundbild, das vom Entwickler festgelegt wird. Jeder Bereich kann ein eigenes Hintergrundbild haben.
+Spieler können sowohl freitextlich als auch durch Entscheidungen (aus vorgegebenen Optionen) das Spiel steuern.
 
+Möglichkeit, den Charakter anzupassen: Zu Beginn wählt der Spieler einen Charakter und kann individuelle Eigenschaften (z.B. Aussehen) bestimmen. Diese werden sowohl im Text als auch in den Bildern reflektiert.
 
 
----
+### 3.3 Spielwelt und Fortschritt
 
-## 2. Dynamische Erklärung des Spiels
+Spieler können jederzeit ihren Fortschritt speichern, um das Abenteuer später fortzusetzen. Dies geschieht über Benutzerkonten oder durch das Speichern von Sitzungsdaten.
 
-Auf der Startseite wird das Spiel in kleinen Schritten erklärt. Diese Schritte werden beim Scrollen dynamisch mit Animationen (CSS) angezeigt.
 
-Am Ende der Erklärung gibt es einen Button, der den Benutzer in den Story-Bereich führt, damit er eine Story auswählen und das Spiel starten kann.
+## 4. Technische Umsetzung
 
-Der Footer enthält kleine Informationen wie das Erstellungsdatum und die Entwickler. Er bleibt auf allen Seiten sichtbar.
+### 4.1 Architektur und Frontend
 
+Framework: Das Projekt wird mit React und Vite umgesetzt.
 
+Seitennavigation: Alle Seiten haben einen fixen Header (oben rechts: Links zu Profil, Registrierung, Kontakt, About, Storys; oben links: klickbares Logo, das zur Startseite führt). Der Header bleibt beim Scrollen sichtbar.
 
----
+Hintergrundbilder: Jede Seite hat einen festgelegten Hintergrund, der das gesamte Display einnimmt.
 
-## 3. Storys (Szenarien)
 
-Der Story-Bereich zeigt vorgefertigte Szenarien, und es gibt die Möglichkeit, eine eigene Story zu erstellen:
+### 4.2 Seitenaufbau
 
-Vorgefertigte Storys: Diese folgen der standardisierten Struktur wie vorher beschrieben (Bild, Titel, Beschreibung, Like, Share, Play, Statistiken).
+Startseite: Hier wird das Spiel vorgestellt, durch Scrollen werden die Spielmechaniken dynamisch erklärt. Ein Button führt zur Story-Seite.
 
-Eigene Story erstellen:
+Profilseite: Zwei Unterseiten zeigen:
 
-Der Benutzer gibt eine kurze Beschreibung ein (z.B. Thema, Charaktere, Schauplatz).
+Likes: Spieler können hier gelikte Szenarien sehen.
 
-Die KI erstellt daraufhin eine Story, die die gleichen Schritte wie bei den vorgefertigten Szenarien durchläuft, einschließlich Rollenauswahl und dem schrittweisen Story-Verlauf.
+Favoriten: Hier werden die gespeicherten Szenarien aufgelistet.
 
 
+Anmeldung/Registrierung: Formular zum Erstellen eines Accounts oder zum Einloggen.
 
+Kontaktseite: Hier kann der Spieler das Entwicklerteam kontaktieren.
 
----
+About-Seite: Informationen zum Spiel und zum Entwicklerteam.
 
-## 4. Spiel (Szenario) starten
+Story-Seite: Die zentrale Spielseite, auf der die Spieler eigene Szenarien erstellen oder vorgefertigte auswählen können.
 
-Nach dem Klick auf Play beginnt das Spiel. Der Ablauf bleibt wie zuvor beschrieben:
 
-KI-generiertes Hintergrundbild: Basierend auf der Story-Beschreibung oder dem Titel erstellt die KI ein passendes Hintergrundbild.
+### 4.3 Story-Generierung und Spielstart
 
-Rollenauswahl: Vor dem Start wählt der Benutzer seine Rolle.
+Vorgefertigte Szenarien: Auf der Story-Seite werden vorgefertigte Abenteuer mit Titel, Bild, Beschreibung, Like-, Share- und Play-Buttons angezeigt. Statistiken zeigen Likes und wie oft das Szenario gespielt wurde.
 
-Spielbildschirm:
+Eigene Szenarien: Spieler können eine eigene kurze Beschreibung eingeben, worauf die KI basierend auf dieser Eingabe eine Story erstellt. Das erstellte Szenario kann gespeichert oder sofort gespielt werden.
 
-Oben links: Speichern-Symbol, um die Story als PDF zu speichern.
+Szenarien-Elemente: Jedes Szenario enthält ein Bild (von der KI generiert oder vordefiniert) sowie Like-, Share- und Play-Buttons.
 
-Oben links: X-Symbol, um das Spiel zu beenden.
 
-Unten: Eingabefeld, Weiter- und Senden-Symbole für den Story-Verlauf.
+### 4.4 Spieldurchführung
 
+Nach dem Klick auf „Play“ beginnt das Abenteuer.
 
+Rollenauswahl: Spieler wählen vor Spielbeginn eine Rolle (z.B. Krieger, Magier, Detektiv) aus. Die Auswahl beeinflusst den Verlauf der Geschichte.
 
+Spielinterface:
 
----
+Hintergrundbild: Die KI generiert Bilder basierend auf der Beschreibung des Szenarios.
 
-## 5. Frontend mit React und Vite
+Textfeld: Der Spieler kann hier seine Eingaben machen, um die Handlung zu beeinflussen.
 
-Das gesamte Frontend wird mit React und Vite entwickelt. Die Schritte sind:
+Speicherfunktion: Der Spieler kann jederzeit den bisherigen Spielverlauf speichern (lokal als PDF).
 
-1. Initialisierung des React-Projekts mit Vite.
+Weiter-Symbol: Spieler können die Geschichte fortschreiben lassen, indem sie auf „Weiter“ klicken.
 
+Senden-Symbol: Alternativ kann der Spieler eigene Anweisungen eingeben, um die Handlung zu verändern.
 
-2. Erstellung der Hauptkomponenten:
 
-Header für die Navigationselemente (Logo, Profil, Story-Bereich, About, Kontakt, Anmeldung).
 
-StoryList für die Anzeige der Storys.
+## 5. Geschichte und Welten
 
-StoryCreator für die Erstellung eigener Storys.
+### 5.1 Dynamische Erzählstruktur
 
-GamePlay für das Spielerlebnis.
+Verzweigte Erzählungen: Jede Entscheidung, die der Spieler trifft, beeinflusst die Handlung. Es gibt unterschiedliche Enden und Wege, die erkundet werden können.
 
-Footer für allgemeine Informationen.
+Mehrere Genres: Spieler können zwischen Fantasy, Science-Fiction, Mystery und anderen Genres wählen, um ihre Vorlieben zu berücksichtigen.
 
+Dynamische Welten: Die Spielwelt verändert sich dynamisch basierend auf den Handlungen der Spieler.
 
 
-3. Routing mit React Router zur Navigation zwischen den Seiten.
+### 5.2 Bilder und Visuals
 
+Stilrichtlinien: Die KI-generierten Bilder sollen stilistisch konsistent sein. Ein moderner, einheitlicher visueller Stil sorgt für ein kohärentes Spielerlebnis.
 
-4. State Management für Benutzerstatus und Story-Daten.
+Detailgrad: Szenenbilder werden abhängig von der Spielhandlung angepasst. Bewegungsreiche Szenen sind dynamisch und actionreich, während ruhige Momente mehr Detail erhalten.
 
 
-5. Styling und Animationen in einer separaten CSS-Datei.
+## 6. Backend und Optimierung
 
+### 6.1 API-Kontingente
 
-6. Implementierung der KI-Funktionalitäten für die Story-Erstellung, Rollenauswahl und den Story-Verlauf.
+Optimierung der Anfragen: Um die API-Kontingente effizient zu nutzen, werden Texte und Bilder nur bei wichtigen Szenen generiert. Unnötige Bild-Generierungen werden vermieden.
 
 
+### 6.2 Speicherung und Fortsetzung
 
+Fortschritt wird durch Benutzerkonten gesichert. Spieler können jederzeit auf gespeicherte Szenarien zugreifen und weiterspielen.
 
----
 
-### Zusammenfassung der Entwicklungsschritte
+## 7. Design und Animationen
 
-1. React-Projekt mit Vite starten.
+### 7.1 Dynamische Einführung
 
+Die dynamische Erklärung der Spielmechanik auf der Startseite wird durch Scroll-Animationen unterstützt.
 
-2. Erstellung des Headers mit Navigationselementen (Story-Bereich, About, Kontakt, Anmeldung) rechts neben dem Profilbereich.
+Animationen und Design: Alle Animationen werden in einer separaten CSS-Datei definiert, um für klare Struktur und Wiederverwendbarkeit zu sorgen.
 
 
-3. Komponentenstruktur entwickeln: StoryList, StoryCreator, GamePlay, Footer.
+## 8. Verbesserungen und Fehlerkorrekturen
 
-
-4. React Router implementieren für die Navigation.
-
-
-5. KI-Integration für die dynamische Story-Erstellung und den Spielverlauf.
-
-
-6. CSS-Design und Animationen für dynamische Erklärungen und Layout.
+Vereinheitlichung des Designs: Alle UI-Elemente sollten durchgehend einheitlich gestaltet sein, um eine benutzerfreundliche Navigation zu gewährleisten.
