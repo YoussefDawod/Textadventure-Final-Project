@@ -2,10 +2,10 @@ import React from 'react';
 
 function Contact() {
   return (
-    <div>
+    <main className="contact-background">
       <h1>Contact Seite</h1>
       <p>Hier ist die Kontakt-Seite deines Projekts!</p>
-    </div>
+    </main>
   );
 }
 

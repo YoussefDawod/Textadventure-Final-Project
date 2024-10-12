@@ -1,6 +1,6 @@
 const Profile = () => {
     return (
-      <div>
+      <main className="profile-background">
         <h2>Dein Profil</h2>
         <div>
           <h3>Likes</h3>
@@ -10,7 +10,7 @@ const Profile = () => {
           <h3>Favoriten</h3>
           <p>Hier siehst du deine gespeicherten Szenarien.</p>
         </div>
-      </div>
+      </main>
     );
   };
   

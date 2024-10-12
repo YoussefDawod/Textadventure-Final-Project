@@ -1,34 +1,71 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
-  }
-  
-  header {
-    display: flex;
-    justify-content: space-between;
-    padding: 1rem;
-    background-color: #333;
-    color: white;
-  }
-  
-  nav a {
-    margin-right: 1rem;
-    color: white;
-    text-decoration: none;
-  }
-  
-  footer {
-    text-align: center;
-    padding: 1rem;
-    background-color: #333;
-    color: white;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-  }
-  
-  main {
-    padding: 2rem;
-  }
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 1rem;
+  background-color: #00000000;
+  color: white;
+}
+
+nav a {
+  margin-right: 1rem;
+  color: white;
+  text-decoration: none;
+}
+
+footer {
+  text-align: center;
+  padding: 1rem;
+  background-color: #000000e1;
+  color: white;
+}
+
+main {
+  padding: 3rem;
+}
+
+.home-background {
+  background-image: url("/Images/1728686411258_DsVyoimi.png"); 
+}
+
+.stories-background {
+  background-image: url("/Images/1728686633118_6nfLx6Wm.png"); 
+}
+
+.about-background {
+  background-image: url("/Images/1728683712956_obZsi3jN.png"); 
+}
+
+.contact-background {
+  background-image: url("/Images/1728686285241_qBQfK9v0.png"); 
+}
+
+.profile-background {
+  background-image: url("/Images/1728683718145_6QRaafpS.png"); 
+}
+
+.register-background {
+  background-image: url("/Images/1728683881118_KA2tuR0f.png"); 
+}
+
+.home-background,
+.stories-background,
+.about-background,
+.contact-background,
+.profile-background,
+.register-background {
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  color: white; /* Textfarbe */
+}

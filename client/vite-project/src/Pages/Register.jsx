@@ -22,7 +22,7 @@ const Register = () => {
   };
 
   return (
-    <div>
+    <main className="register-background">
       <h1>Registrieren</h1>
       <form onSubmit={handleSubmit}>
         <div>
@@ -60,7 +60,7 @@ const Register = () => {
         </div>
         <button type="submit">Registrieren</button>
       </form>
-    </div>
+    </main>
   );
 };
 
