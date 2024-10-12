@@ -1,11 +1,12 @@
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
     <header>
-      <div className="logo">
-        <Link to="/">Logo</Link>
-      </div>
+      <Link className="logo" to="/">
+        <img src="/Logo/TIA-Logo-3.png" alt="Logo" />
+      </Link>
+
       <nav>
         <Link to="/stories">Stories</Link>
         <Link to="/about">About</Link>

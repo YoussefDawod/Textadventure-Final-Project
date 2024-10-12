@@ -1,4 +1,10 @@
-body {
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
   font-family: Arial, sans-serif;
   background-color: #f4f4f4;
   height: 100%;
@@ -6,15 +12,29 @@ body {
   padding: 0;
 }
 
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   position: fixed;
   top: 0;
   width: 100%;
-  padding: 1rem;
+  height: 75px; /* Höhe des Headers */
   background-color: #00000000;
   color: white;
+  z-index: 1000; /* Stellt sicher, dass der Header über dem Inhalt bleibt */
+}
+
+.logo img {
+  height: 100%; /* Das Logo nimmt die gesamte Höhe des Headers ein */
+  max-height: 75px; /* Maximale Höhe des Logos auf die Höhe des Headers beschränken */
+  width: auto; /* Beibehaltung des Seitenverhältnisses */
 }
 
 nav a {
@@ -23,15 +43,23 @@ nav a {
   text-decoration: none;
 }
 
+main {
+  flex: 1; /* Nimmt den verbleibenden Platz ein */
+  padding-top: 75px; /* Platz für den fixierten Header */
+  background-size: cover;
+  background-position: center;
+  color: aqua;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 footer {
   text-align: center;
   padding: 1rem;
   background-color: #000000e1;
   color: white;
-}
-
-main {
-  padding: 3rem;
 }
 
 .home-background {
@@ -67,5 +95,4 @@ main {
   background-size: cover;
   background-position: center;
   height: 100vh;
-  color: white; /* Textfarbe */
 }

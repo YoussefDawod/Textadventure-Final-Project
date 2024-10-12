@@ -134,3 +134,81 @@ Animationen und Design: Alle Animationen werden in einer separaten CSS-Datei def
 ## 8. Verbesserungen und Fehlerkorrekturen
 
 Vereinheitlichung des Designs: Alle UI-Elemente sollten durchgehend einheitlich gestaltet sein, um eine benutzerfreundliche Navigation zu gewährleisten.
+
+
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #00000000;
+  color: white;
+}
+
+.logo img {
+  height: 100px; 
+}
+
+nav a {
+  margin-right: 1rem;
+  color: white;
+  text-decoration: none;
+}
+
+footer {
+  text-align: center;
+  padding: 1rem;
+  background-color: #000000e1;
+  color: white;
+}
+
+main {
+  padding: 4rem;
+}
+
+.home-background {
+  background-image: url("/Images/1728686411258_DsVyoimi.png"); 
+}
+
+.stories-background {
+  background-image: url("/Images/1728686633118_6nfLx6Wm.png"); 
+}
+
+.about-background {
+  background-image: url("/Images/1728683712956_obZsi3jN.png"); 
+}
+
+.contact-background {
+  background-image: url("/Images/1728686285241_qBQfK9v0.png"); 
+}
+
+.profile-background {
+  background-image: url("/Images/1728683718145_6QRaafpS.png"); 
+}
+
+.register-background {
+  background-image: url("/Images/1728683881118_KA2tuR0f.png"); 
+}
+
+.home-background,
+.stories-background,
+.about-background,
+.contact-background,
+.profile-background,
+.register-background {
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  color: white; /* Textfarbe */
+}
