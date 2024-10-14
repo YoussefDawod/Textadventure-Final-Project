@@ -94,6 +94,8 @@ async function fetch2() {
     if(finalResult != (undefined || ``)) {
       console.log(finalResult);
       showSite(finalResult);
+    } else {
+      fetch2();
     }
   } catch (error) {
     console.log(error);
