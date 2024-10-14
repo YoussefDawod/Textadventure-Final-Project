@@ -25,9 +25,7 @@ myHeaders.append("Content-Type", "application/json");
 
 var raw = JSON.stringify({
   model: "anthropic/claude-3-haiku:beta",
-  message: `Eine Kurze Geschichte rund um ${
-    keyWords + bindingWords
-  } mit 1-2 Sätzen Text. Danach bitte eine Zeile freilassen. Nun gebe bitte 3 Auswahlmöglichkeiten welche die Geschichte weiterschreiben. 
+  message: `Eine Kurze Geschichte rund um ${keyWords + bindingWords} mit 1-2 Sätzen Text. Danach bitte eine Zeile freilassen. Nun gebe bitte 3 Auswahlmöglichkeiten welche die Geschichte weiterschreiben. 
   Die Geschichte sollte ausgefallen sein. Und es sollte in dieser Form zurückkommen. Die Geschichte sollte nur dort landen wo Text steht. 
   Hier ist die Form. ${form}. Und danach keine Worte mehr.`,
 });
@@ -94,8 +92,6 @@ async function fetch2() {
     if(finalResult != (undefined || ``)) {
       console.log(finalResult);
       showSite(finalResult);
-    } else {
-      fetch2();
     }
   } catch (error) {
     console.log(error);
