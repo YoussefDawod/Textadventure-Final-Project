@@ -6,7 +6,6 @@
 
 html, body {
   font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
   height: 100%;
   margin: 0;
   padding: 0;
@@ -25,16 +24,15 @@ header {
   position: fixed;
   top: 0;
   width: 100%;
-  height: 75px; /* Höhe des Headers */
+  height: 75px;
   background-color: #00000000;
   color: white;
-  z-index: 1000; /* Stellt sicher, dass der Header über dem Inhalt bleibt */
+  z-index: 1000;
 }
 
 .logo img {
-  height: 100%; /* Das Logo nimmt die gesamte Höhe des Headers ein */
-  max-height: 75px; /* Maximale Höhe des Logos auf die Höhe des Headers beschränken */
-  width: auto; /* Beibehaltung des Seitenverhältnisses */
+  max-height: 75px;
+  width: auto;
 }
 
 nav a {
@@ -44,8 +42,8 @@ nav a {
 }
 
 main {
-  flex: 1; /* Nimmt den verbleibenden Platz ein */
-  padding-top: 75px; /* Platz für den fixierten Header */
+  flex: 1;
+  padding-top: 75px;
   background-size: cover;
   background-position: center;
   color: aqua;
@@ -60,30 +58,6 @@ footer {
   padding: 1rem;
   background-color: #000000e1;
   color: white;
-}
-
-.home-background {
-  background-image: url("/Images/1728686411258_DsVyoimi.png"); 
-}
-
-.stories-background {
-  background-image: url("/Images/1728686633118_6nfLx6Wm.png"); 
-}
-
-.about-background {
-  background-image: url("/Images/1728683712956_obZsi3jN.png"); 
-}
-
-.contact-background {
-  background-image: url("/Images/1728686285241_qBQfK9v0.png"); 
-}
-
-.profile-background {
-  background-image: url("/Images/1728683718145_6QRaafpS.png"); 
-}
-
-.register-background {
-  background-image: url("/Images/1728683881118_KA2tuR0f.png"); 
 }
 
 .home-background,

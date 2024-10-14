@@ -1,3 +1,5 @@
+import '../Styles/Profile.css';
+
 const Profile = () => {
     return (
       <main className="profile-background">

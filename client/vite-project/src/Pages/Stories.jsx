@@ -1,4 +1,4 @@
-import React from 'react';
+import '../Styles/Stories.css';
 
 const Stories = () => {
   return (

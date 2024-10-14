@@ -1,3 +1,5 @@
+import '../Styles/About.css';
+
 function About() {
   return (
     <main className="about-background">
