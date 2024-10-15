@@ -9,4 +9,4 @@ const Stories = () => {
   );
 };
 
-export default Stories;  // Exportiere die Komponente als Default
+export default Stories;
