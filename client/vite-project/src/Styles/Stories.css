@@ -1,3 +1,17 @@
 .stories-background {
     background-image: url("/Images/1728686633118_6nfLx6Wm.png"); 
   }
+
+  .stories-container{
+    padding: 1rem;
+  }
+  .scenarios-list{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    background-color: rgba(0, 0, 0, 0.534);
+    padding: 1rem;
+    border-radius: 1rem;
+
+  }

@@ -66,7 +66,8 @@ footer {
 .about-background,
 .contact-background,
 .profile-background,
-.register-background {
+.register-background,
+.gameScreen-background {
   background-size: cover;
   background-position: center;
   height: 100vh;
