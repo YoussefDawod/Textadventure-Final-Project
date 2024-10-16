@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import '../Styles/GameScreen.css';
+import '../../Styles/storiesSeite/GameScreen.css';
 
 const GameScreen = ({ scenarioId, onExit }) => {
   // Lokale Zustände für den Spielverlauf

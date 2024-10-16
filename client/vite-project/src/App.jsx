@@ -4,7 +4,7 @@ import Profile from './Pages/Profile';
 import Register from './Pages/Register';
 import Contact from './Pages/Contact';
 import About from './Pages/About';
-import Stories from './Pages/Stories';
+import Stories from './Pages/StoriesSeite/Stories';
 import Header from './components/Header';
 import Footer from './components/Footer';
 

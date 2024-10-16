@@ -6,19 +6,7 @@ const ScenarioCard = ({ scenario, onLike, onSave, onShare, onPlay }) => {
     <div className="scenario-card">
       <div className="scenario-header">
         <div className="scenario-logo">Logo</div> {/* Logo als Platzhalter */}
-        <div
-          className="scenario-share"
-          onClick={onShare}
-          role="button"
-          tabIndex={0}
-          onKeyPress={(e) => {
-            if (e.key === "Enter" || e.key === " ") {
-              onShare();
-            }
-          }}
-        >
-          Teilen
-        </div>
+        <button className="scenario-share" onClick={onShare}>Teilen</button>
       </div>
       <div className="scenario-content">
         <h2>{scenario.title}</h2>

@@ -1,8 +1,8 @@
-import "../Styles/Stories.css";
+import "../../Styles/storiesSeite/Stories.css";
 import { useState } from "react";
 import GameScreen from "./GameScreen";
 import ScenarioCard from "./ScenarioCard";
-import scenarios from "../Scenarios/scenarios";
+import scenarios from "../../Scenarios/scenarios";
 
 const Stories = () => {
   const [isPlaying, setIsPlaying] = useState(false);
