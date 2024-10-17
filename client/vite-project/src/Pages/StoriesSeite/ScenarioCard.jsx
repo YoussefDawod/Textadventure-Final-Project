@@ -1,11 +1,13 @@
 import PropTypes from "prop-types";
+import "../../Styles/storiesSeite/ScenarioCard.css";
 
-// Diese Komponente rendert eine Karte für ein Szenario
 const ScenarioCard = ({ scenario, onLike, onSave, onShare, onPlay }) => {
   return (
-    <div className="scenario-card">
+    <div className="scenario-card" style={{ backgroundImage: `url(${scenario.image || '/Scenarios-Images/placeholder.jpg'})` }}>
       <div className="scenario-header">
-        <div className="scenario-logo">Logo</div> {/* Logo als Platzhalter */}
+        <div className="scenario-logo">
+          <img src="/Logo/TIA-Logo-1.png" alt="Logo" />
+        </div>
         <button className="scenario-share" onClick={onShare}>Teilen</button>
       </div>
       <div className="scenario-content">
@@ -25,6 +27,7 @@ ScenarioCard.propTypes = {
   scenario: PropTypes.shape({
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
+    image: PropTypes.string,
     likes: PropTypes.number.isRequired,
   }).isRequired,
   onLike: PropTypes.func.isRequired,

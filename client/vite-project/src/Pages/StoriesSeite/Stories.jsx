@@ -1,27 +1,34 @@
 import "../../Styles/storiesSeite/Stories.css";
 import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import GameScreen from "./GameScreen";
 import ScenarioCard from "./ScenarioCard";
 import scenarios from "../../Scenarios/scenarios";
+import NoHeaderFooterLayout from "../../Components/NoHeaderFooterLayout";
 
 const Stories = () => {
+  const navigate = useNavigate();
   const [isPlaying, setIsPlaying] = useState(false);
   const [selectedScenarioId, setSelectedScenarioId] = useState(null);
 
-  // Funktion, um das Spiel zu starten
   const startGame = (scenarioId) => {
     setSelectedScenarioId(scenarioId);
     setIsPlaying(true);
+    navigate(`/game/${scenarioId}`);
   };
 
-  // Funktion, um das Spiel zu beenden
   const exitGame = () => {
     setIsPlaying(false);
     setSelectedScenarioId(null);
+    navigate('/stories'); // Navigieren Sie zurück zur Stories-Seite
   };
 
   if (isPlaying) {
-    return <GameScreen scenarioId={selectedScenarioId} onExit={exitGame} />;
+    return (
+      <NoHeaderFooterLayout>
+        <GameScreen scenarioId={selectedScenarioId} onExit={exitGame} />
+      </NoHeaderFooterLayout>
+    );
   }
 
   return (
@@ -29,7 +36,6 @@ const Stories = () => {
       <div className="stories-container">
         <h1>Vorgefertigte und Benutzer-Szenarien</h1>
         <div className="scenarios-list">
-          {/* Szenarien werden hier aufgelistet */}
           {scenarios.map((scenario) => (
             <ScenarioCard
               key={scenario.id}

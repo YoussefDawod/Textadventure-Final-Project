@@ -4,14 +4,16 @@
 
   .stories-container{
     padding: 1rem;
+    text-align: center;
   }
   .scenarios-list{
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content:space-around;
     gap: 1rem;
     background-color: rgba(0, 0, 0, 0.534);
     padding: 1rem;
     border-radius: 1rem;
-
+    overflow: scroll;
+    max-height: 70vh;
   }
