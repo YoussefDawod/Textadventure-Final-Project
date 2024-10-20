@@ -1,3 +1,93 @@
 .profile-background {
-    background-image: url("/Images/1728683718145_6QRaafpS.png"); 
-  }
+  background-image: linear-gradient(rgba(255, 0, 0, 0.349), rgba(0, 0, 0, 0.5)), url("/Images/1728683718145_6QRaafpS.png");
+}
+
+.scenario-container{
+  overflow: scroll;
+  max-height: 50%;
+  padding: 0 1rem 0 1rem;
+  background-color: rgba(0, 0, 0, 0.459);
+  border-radius: 1rem;
+}
+
+/* Scrollbar ausblenden */
+.scenario-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* Für Firefox */
+.scenario-container {
+  scrollbar-width: none; /* Firefox */
+}
+
+.toggle-button {
+  width: 150px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin: 0.1rem 0;
+  cursor: pointer;
+  border-radius: 1rem;
+  font-size: 1em;
+  text-align: center;
+}
+
+.toggle-button:hover {
+  background-color: #0056b3;
+}
+
+.scenario {
+  margin: 1rem 0 1rem 0 ;
+  max-width: 500px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 1rem;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.562);
+  background-color: #00000085;
+  color: aliceblue;
+}
+
+.scenario-image {
+  width: 125px;
+  height: 100px;
+  object-fit: cover;
+  margin-right: 5px;
+  border-radius: 1rem 0 0 1rem;
+}
+
+.scenario-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.scenario h4 {
+  font-size: 0.9em;
+}
+
+.scenario p {
+  font-size: 0.7em;
+}
+
+.button-group {
+  display: flex;
+  justify-content:end;
+}
+
+.button-group button{
+  max-height: 30px;
+  margin: 1px;
+  padding: 10px;
+  border: none;
+  border-radius: 15px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  cursor: pointer;
+}
+
+.button-group button:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+}

@@ -1,3 +1,17 @@
 .home-background {
-    background-image: url("/Images/1728686411258_DsVyoimi.png"); 
-  }
+  background-image: linear-gradient(rgba(0, 140, 255, 0.349), rgba(0, 0, 0, 0.5)), url("/Images/1728686411258_DsVyoimi.png");
+}
+
+button {
+  margin: 1px;
+  padding: 10px;
+  border: none;
+  border-radius: 15px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+}

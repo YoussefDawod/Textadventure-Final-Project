@@ -11,6 +11,13 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.582);
   color: #fff;
 }
+
+.scenario-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.7);
+}
+
+
 .scenario-card button {
   margin: 1px;
   padding: 10px;
@@ -48,3 +55,4 @@
     border-radius: 50%;
     margin-right: 10px;
 }
+

@@ -48,7 +48,6 @@ const GameScreen = ({ scenarioId, onExit }) => {
 
   const handleExit = () => {
     onExit();
-    navigate('/stories');
   };
 
   if (loading) {

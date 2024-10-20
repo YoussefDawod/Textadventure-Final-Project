@@ -1,9 +1,9 @@
 const scenarios = [
   {
     id: 1,
-    title: "Matrix: Das Erwachen",
+    title: "Matrix Das Erwachen",
     description:
-      "Neo enthüllt die Matrix und kämpft mit Rebellen gegen Maschinen, um die Menschheit zu befreien.",
+      "Neo entdeckt die Wahrheit der Matrix. Mit Rebellen kämpft er gegen Maschinen, um die gefangene Menschheit zu befreien und retten.",
     likes: 105,
     image: "/Scenarios-Images/Mtrix-Das-Erwachen.png",
   },

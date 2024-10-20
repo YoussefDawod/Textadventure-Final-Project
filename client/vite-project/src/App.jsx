@@ -1,4 +1,6 @@
-import { BrowserRouter as Router, Routes, Route, useParams } from 'react-router-dom';
+import { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route, useParams, useNavigate } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import Home from './Pages/Home';
 import Profile from './Pages/Profile';
 import Register from './Pages/Register';
@@ -9,44 +11,59 @@ import GameScreen from './Pages/StoriesSeite/GameScreen';
 import Header from './Components/Header';
 import Footer from './Components/Footer';
 import NoHeaderFooterLayout from './Components/NoHeaderFooterLayout';
+import { ScenarioProvider } from './Scenarios/ScenarioContext';
 
 function App() {
+  const [originPage, setOriginPage] = useState("stories");
+
   return (
-    <Router>
-      <Routes>
-        <Route
-          path="/game/:scenarioId"
-          element={
-            <NoHeaderFooterLayout>
-              <GameScreenWrapper />
-            </NoHeaderFooterLayout>
-          }
-        />
-        <Route
-          path="*"
-          element={
-            <>
-              <Header />
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/profile" element={<Profile />} />
-                <Route path="/register" element={<Register />} />
-                <Route path="/contact" element={<Contact />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/stories" element={<Stories />} />
-              </Routes>
-              <Footer />
-            </>
-          }
-        />
-      </Routes>
-    </Router>
+    <ScenarioProvider>
+      <Router>
+        <Routes>
+          <Route
+            path="/game/:scenarioId"
+            element={
+              <NoHeaderFooterLayout>
+                <GameScreenWrapper originPage={originPage} />
+              </NoHeaderFooterLayout>
+            }
+          />
+          <Route
+            path="*"
+            element={
+              <>
+                <Header />
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/profile" element={<Profile setOriginPage={setOriginPage} />} />
+                  <Route path="/register" element={<Register />} />
+                  <Route path="/contact" element={<Contact />} />
+                  <Route path="/about" element={<About />} />
+                  <Route path="/stories" element={<Stories setOriginPage={setOriginPage} />} />
+                </Routes>
+                <Footer />
+              </>
+            }
+          />
+        </Routes>
+      </Router>
+    </ScenarioProvider>
   );
 }
 
-const GameScreenWrapper = () => {
+const GameScreenWrapper = ({ originPage }) => {
+  const navigate = useNavigate();
   const { scenarioId } = useParams();
-  return <GameScreen scenarioId={parseInt(scenarioId, 10)} onExit={() => {}} />;
+
+  const exitGame = () => {
+    navigate(`/${originPage}`);
+  };
+
+  return <GameScreen scenarioId={parseInt(scenarioId, 10)} onExit={exitGame} />;
+};
+
+GameScreenWrapper.propTypes = {
+  originPage: PropTypes.string.isRequired,
 };
 
 export default App;

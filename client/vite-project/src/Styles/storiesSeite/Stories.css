@@ -1,19 +1,84 @@
 .stories-background {
-    background-image: url("/Images/1728686633118_6nfLx6Wm.png"); 
-  }
+  background-image: url("/Images/1728686633118_6nfLx6Wm.png");
+}
 
-  .stories-container{
-    padding: 1rem;
-    text-align: center;
-  }
-  .scenarios-list{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content:space-around;
-    gap: 1rem;
-    background-color: rgba(0, 0, 0, 0.534);
-    padding: 1rem;
-    border-radius: 1rem;
-    overflow: scroll;
-    max-height: 70vh;
-  }
+.stories-contents {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 1rem;
+  padding: 1rem;
+  
+}
+
+.create-scenario {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.2rem;
+  padding: 1rem;
+  background-color: rgba(0, 0, 0, 0.459);
+  border-radius: 1rem;
+  
+}
+
+.create-scenario h2 {
+  align-self: flex-start;
+}
+
+.create-scenario input,
+.create-scenario textarea {
+  width: 100%;
+  padding: 0.4rem;
+  border-radius: 1rem;
+}
+
+.create-scenario textarea {
+  height: 100px; /* Anpassung der Höhe für die Beschreibung */
+}
+
+.button-container{
+  
+  align-self: flex-end;
+}
+
+.button-start {
+  margin: 1px;
+  padding: 10px;
+  border: none;
+  border-radius: 15px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  cursor: pointer;
+}
+
+.button-start:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.stories-container {
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.459);
+  border-radius: 1rem;
+}
+
+.scenarios-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: 1rem;
+  overflow: scroll;
+  max-height: 50vh;
+}
+
+/* Scrollbar ausblenden */
+.scenarios-list::-webkit-scrollbar {
+  display: none;
+}
+
+/* Für Firefox */
+.scenarios-list {
+  scrollbar-width: none; /* Firefox */
+}
