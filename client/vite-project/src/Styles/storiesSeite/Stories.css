@@ -1,5 +1,5 @@
 .stories-background {
-  background-image: url("/Images/1728686633118_6nfLx6Wm.png");
+  background-image: linear-gradient(rgba(255, 0, 0, 0.315), rgba(0, 0, 0, 0.5)), url("/Images/1728686633118_6nfLx6Wm.png");
 }
 
 .stories-contents {
