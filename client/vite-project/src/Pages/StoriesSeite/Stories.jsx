@@ -13,13 +13,13 @@ const Stories = ({ setOriginPage }) => {
   const [customTitle, setCustomTitle] = useState("");
   const [customDescription, setCustomDescription] = useState("");
 
-  const playScenario = (scenarioId) => { // Changed here
+  const playScenario = (scenarioId) => {
     setOriginPage("stories");
     navigate(`/game/${scenarioId}`);
   };
 
   const startGame = (scenarioId) => {
-    playScenario(scenarioId); // Changed here
+    playScenario(scenarioId);
   };
 
   const createCustomScenario = () => {
@@ -29,8 +29,9 @@ const Stories = ({ setOriginPage }) => {
       description: customDescription,
       likes: 0,
     };
-    scenarios.push(newScenario);
-    playScenario(newScenario.id); // Changed here
+    // Neue Änderung
+    scenarios.unshift(newScenario); // Fügt das neue Szenario an den Anfang der Liste hinzu
+    playScenario(newScenario.id);
   };
 
   return (
@@ -50,10 +51,10 @@ const Stories = ({ setOriginPage }) => {
           <textarea
             id="customDescription"
             name="customDescription"
-            placeholder="Beschreibung (max. 136 Buchstaben)"
+            placeholder="Beschreibung (max. 174 Buchstaben)"
             value={customDescription}
             onChange={(e) => setCustomDescription(e.target.value)}
-            maxLength="136"
+            maxLength="174"
           />
           <div className="button-container">
             <button className="button-start" onClick={createCustomScenario}>
@@ -68,7 +69,7 @@ const Stories = ({ setOriginPage }) => {
               <ScenarioCard
                 key={scenario.id}
                 scenario={scenario}
-                onPlay={() => startGame(scenario.id)} // Changed here
+                onPlay={() => startGame(scenario.id)}
                 onLike={() => likeScenario(scenario.id)} 
                 onSave={() => saveScenario(scenario.id)} 
                 onShare={() => console.log(`Szenario ${scenario.id} geteilt`)}

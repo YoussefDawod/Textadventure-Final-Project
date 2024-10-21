@@ -20,7 +20,7 @@
   scrollbar-width: none; /* Firefox */
 }
 
-.toggle-button {
+.an-abmelden-toggle-button {
   width: 150px;
   background-color: #007bff;
   color: white;
@@ -33,7 +33,7 @@
   text-align: center;
 }
 
-.toggle-button:hover {
+.an-abmelden-toggle-button:hover {
   background-color: #0056b3;
 }
 

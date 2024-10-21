@@ -1,20 +1,41 @@
-import { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, useParams, useNavigate } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import Home from './Pages/Home';
-import Profile from './Pages/Profile';
-import Register from './Pages/Register';
-import Contact from './Pages/Contact';
-import About from './Pages/About';
-import Stories from './Pages/StoriesSeite/Stories';
-import GameScreen from './Pages/StoriesSeite/GameScreen';
-import Header from './Components/Header';
-import Footer from './Components/Footer';
-import NoHeaderFooterLayout from './Components/NoHeaderFooterLayout';
-import { ScenarioProvider } from './Scenarios/ScenarioContext';
+import { useState } from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useParams,
+  useNavigate,
+} from "react-router-dom";
+import PropTypes from "prop-types";
+import Home from "./Pages/Home";
+import Profile from "./Pages/Profile";
+import Register from "./Pages/Register";
+import Contact from "./Pages/Contact";
+import About from "./Pages/About";
+import Stories from "./Pages/StoriesSeite/Stories";
+import GameScreen from "./Pages/StoriesSeite/GameScreen";
+import Header from "./Components/Header";
+import Footer from "./Components/Footer";
+import NoHeaderFooterLayout from "./Components/NoHeaderFooterLayout";
+import { ScenarioProvider } from "./Scenarios/ScenarioContext";
 
 function App() {
   const [originPage, setOriginPage] = useState("stories");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userName, setUserName] = useState("");
+  const [userEmail, setUserEmail] = useState("");
+
+  const handleLogin = () => {
+    setIsLoggedIn(true);
+    setUserName("BeispielName"); // Ersetzen mit echter Logik
+    setUserEmail("beispiel@beispiel.com"); // Ersetzen echter Logik
+  };
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    setUserName("");
+    setUserEmail("");
+  };
 
   return (
     <ScenarioProvider>
@@ -29,17 +50,33 @@ function App() {
             }
           />
           <Route
+            path="/register"
+            element={!isLoggedIn && <Register onLogin={handleLogin} />}
+          />
+          <Route
             path="*"
             element={
               <>
                 <Header />
                 <Routes>
                   <Route path="/" element={<Home />} />
-                  <Route path="/profile" element={<Profile setOriginPage={setOriginPage} />} />
-                  <Route path="/register" element={<Register />} />
-                  <Route path="/contact" element={<Contact />} />
+                  <Route
+                    path="/profile"
+                    element={
+                      <Profile
+                        setOriginPage={setOriginPage}
+                        isLoggedIn={isLoggedIn}
+                        userName={userName}
+                        userEmail={userEmail}
+                        onLogout={handleLogout}
+                      />
+                    }
+                  />
                   <Route path="/about" element={<About />} />
-                  <Route path="/stories" element={<Stories setOriginPage={setOriginPage} />} />
+                  <Route
+                    path="/stories"
+                    element={<Stories setOriginPage={setOriginPage} />}
+                  />
                 </Routes>
                 <Footer />
               </>
