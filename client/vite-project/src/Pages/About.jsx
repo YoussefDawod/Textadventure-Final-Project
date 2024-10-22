@@ -8,8 +8,8 @@ const teamMembers = [
   {
     name: "Artiom",
     image: `${PUBLIC_URL}/Team-Images/Artiom.jpg`,
-    github: "https://github.com/artiom",
-    linkedin: "https://linkedin.com/in/artiom",
+    github: "https://github.com/art10mEu",
+    linkedin: "https://www.linkedin.com/in/art10m/",
   },
   {
     name: "Youssef",
@@ -20,20 +20,20 @@ const teamMembers = [
   {
     name: "Kai",
     image: `${PUBLIC_URL}/Team-Images/Kai.jpg`,
-    github: "https://github.com/kai",
-    linkedin: "https://linkedin.com/in/kai",
+    github: "https://github.com/DrApplebrain",
+    linkedin: "https://www.linkedin.com/in/kai-apfel-1a75bb318/",
   },
   {
     name: "Mario",
     image: `${PUBLIC_URL}/Team-Images/Mario.jpg`,
-    github: "https://github.com/mario",
-    linkedin: "https://linkedin.com/in/mario",
+    github: "https://github.com/Mario-Laudi",
+    linkedin: "https://www.linkedin.com/in/mario-laudi-b8184497/",
   },
   {
     name: "Handrin",
     image: `${PUBLIC_URL}/Team-Images/Handrin.jpg`,
-    github: "https://github.com/handrin",
-    linkedin: "https://linkedin.com/in/handrin",
+    github: "https://github.com/handrinh",
+    linkedin: "https://www.linkedin.com/in/handrin-sarbast-hassen-688049334/+",
   },
 ];
 
