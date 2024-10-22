@@ -82,12 +82,7 @@
   margin: 1px;
   padding: 10px;
   border: none;
-  border-radius: 15px;
-  background-color: rgba(0, 0, 0, 0.5);
-  color: white;
+  background-color:rgba(255, 0, 0, 0);
   cursor: pointer;
 }
 
-.button-group button:hover {
-  background-color: rgba(0, 0, 0, 0.7);
-}

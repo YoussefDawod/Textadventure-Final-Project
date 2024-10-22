@@ -1,6 +1,7 @@
 import { useState } from "react";
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
+import Icon from "../Components/Icons";
 import "../Styles/Register.css";
 
 const Register = ({ onLogin }) => {
@@ -53,10 +54,10 @@ const Register = ({ onLogin }) => {
       <div className="register-content">
       <h1>{isRegistrationMode ? "Registrieren" : "Anmelden"}</h1>
       <button onClick={() => handleSocialLogin("Google")}>
-        Mit Google {isRegistrationMode ? "registrieren" : "anmelden"}
+      <Icon type="google" />{isRegistrationMode ? "registrieren" : "anmelden"}
       </button>
       <button onClick={() => handleSocialLogin("Facebook")}>
-        Mit Facebook {isRegistrationMode ? "registrieren" : "anmelden"}
+      <Icon type="facebook" /> {isRegistrationMode ? "registrieren" : "anmelden"}
       </button>
       <form onSubmit={handleSubmit}>
         {isRegistrationMode && (

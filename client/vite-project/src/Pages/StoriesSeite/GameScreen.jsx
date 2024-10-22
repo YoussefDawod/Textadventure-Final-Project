@@ -1,9 +1,11 @@
 import { useState, useEffect, useCallback } from 'react';
 import '../../Styles/storiesSeite/GameScreen.css';
 import PropTypes from 'prop-types';
+import { useParams } from 'react-router-dom';
+import Icon from "../../Components/Icons";
 
-// Änderung: Verwenden von Szenario-ID und Szenario-Titel
-const GameScreen = ({ scenarioTitle, onExit }) => {
+const GameScreen = ({ onExit }) => {
+  const {scenarioTitle } = useParams();
   const [currentText, setCurrentText] = useState('');
   const [userInput, setUserInput] = useState('');
   const [loading, setLoading] = useState(false);
@@ -12,7 +14,6 @@ const GameScreen = ({ scenarioTitle, onExit }) => {
   const dummyInitialText = `Willkommen in deinem Abenteuer! Szenario Titel: ${scenarioTitle}`;
   const dummyNextText = "Dies ist der nächste Abschnitt deines Abenteuers.";
 
-  // Änderung: Verwenden von useCallback, um die Funktion zu stabilisieren
   const startGame = useCallback(async () => {
     setLoading(true);
     setTimeout(() => {
@@ -56,7 +57,7 @@ const GameScreen = ({ scenarioTitle, onExit }) => {
   return (
     <main className="gameScreen-background">
       <div className="game-screen">
-        <button className="exit-button" onClick={handleExit}>Beenden</button>
+        <button className="exit-button" onClick={handleExit}><Icon type="exit" /></button>
         <div className="story-content">
           <div className="story-text">
             <p>{currentText}</p>
@@ -71,8 +72,8 @@ const GameScreen = ({ scenarioTitle, onExit }) => {
               placeholder="Geben Sie Ihre Eingabe ein"
               id="user-input"
             />
-            <button onClick={submitInput}>Senden</button>
-            <button onClick={nextStep}>Weiter</button>
+            <button onClick={submitInput}><Icon type="send" /></button>
+            <button onClick={nextStep}><Icon type="next" /></button>
           </div>
         )}
       </div>
@@ -81,7 +82,6 @@ const GameScreen = ({ scenarioTitle, onExit }) => {
 };
 
 GameScreen.propTypes = {
-  scenarioTitle: PropTypes.string.isRequired, // Änderung: Verwenden von Titel
   onExit: PropTypes.func.isRequired,
 };
 

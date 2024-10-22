@@ -27,7 +27,7 @@ header {
 }
 
 .logo img {
-  max-height: 100px;
+  height: 100px;
   width: auto;
   padding: 10px;
 }

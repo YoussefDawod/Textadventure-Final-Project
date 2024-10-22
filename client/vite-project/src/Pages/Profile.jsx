@@ -1,13 +1,21 @@
-import { useState } from 'react';
-import PropTypes from 'prop-types';
-import useScenarioContext from '../Scenarios/useScenarioContext';
-import scenarios from '../Scenarios/scenarios';
-import { useNavigate } from 'react-router-dom';
-import Contact from './Contact';
-import '../Styles/Profile.css';
+import { useState } from "react";
+import PropTypes from "prop-types";
+import useScenarioContext from "../Scenarios/useScenarioContext";
+import scenarios from "../Scenarios/scenarios";
+import { useNavigate } from "react-router-dom";
+import Contact from "./Contact";
+import "../Styles/Profile.css";
+import Icon from "../Components/Icons";
 
-const Profile = ({ setOriginPage, isLoggedIn, userName, userEmail, onLogout }) => {
-  const { likedScenarios, savedScenarios, removeLike, removeFavorite } = useScenarioContext();
+const Profile = ({
+  setOriginPage,
+  isLoggedIn,
+  userName,
+  userEmail,
+  onLogout,
+}) => {
+  const { likedScenarios, savedScenarios, removeLike, removeFavorite } =
+    useScenarioContext();
   const [activeSection, setActiveSection] = useState(null);
   const navigate = useNavigate();
 
@@ -18,15 +26,16 @@ const Profile = ({ setOriginPage, isLoggedIn, userName, userEmail, onLogout }) =
   const getScenarioDetails = (id) =>
     scenarios.find((scenario) => scenario.id === id) || {};
 
-  const playScenario = (scenarioId) => {
+  // Hinzufügen von scenarioTitle zu playScenario
+  const playScenario = (scenarioId, scenarioTitle) => {
     setOriginPage("profile");
-    navigate(`/game/${scenarioId}`);
+    navigate(`/game/${scenarioId}/${encodeURIComponent(scenarioTitle)}`);
   };
 
   const handleShare = (scenarioId) => {
     const url = `${window.location.origin}/game/${scenarioId}`;
     navigator.clipboard.writeText(url).then(() => {
-      alert('Link zum Szenario wurde kopiert!');
+      alert("Link zum Szenario wurde kopiert!");
     });
   };
 
@@ -40,22 +49,32 @@ const Profile = ({ setOriginPage, isLoggedIn, userName, userEmail, onLogout }) =
       {!isLoggedIn ? (
         <>
           <p>Melde dich an, um die volle Funktion der Seite zu bekommen.</p>
-          <button onClick={() => navigate('/register')} className="an-abmelden-toggle-button">Anmelden</button>
+          <button
+            onClick={() => navigate("/register")}
+            className="an-abmelden-toggle-button"
+          >
+            Anmelden
+          </button>
         </>
       ) : (
         <>
           <h2>Hallo {userName}</h2>
           <p>Du bist mit {userEmail} angemeldet.</p>
-          <button onClick={onLogout} className="an-abmelden-toggle-button">Abmelden</button>
+          <button onClick={onLogout} className="an-abmelden-toggle-button">
+            Abmelden
+          </button>
         </>
       )}
 
-      <button onClick={() => toggleSection('likes')} className="an-abmelden-toggle-button">
+      <button
+        onClick={() => toggleSection("likes")}
+        className="an-abmelden-toggle-button"
+      >
         Likes
       </button>
-      <div className='scenario-container'>
-        {activeSection === 'likes' && (
-          likedScenarios.length > 0 ? (
+      <div className="scenario-container">
+        {activeSection === "likes" &&
+          (likedScenarios.length > 0 ? (
             likedScenarios.map((id, index) => {
               const { title, description, image } = getScenarioDetails(id);
               return (
@@ -65,9 +84,15 @@ const Profile = ({ setOriginPage, isLoggedIn, userName, userEmail, onLogout }) =
                     <h4>{title}</h4>
                     <p>{description}</p>
                     <div className="button-group">
-                      <button onClick={() => playScenario(id)}>Spielen</button>
-                      <button onClick={() => handleShare(id)}>Teilen</button>
-                      <button onClick={() => removeLike(id)}>Löschen</button>
+                      <button onClick={() => playScenario(id, title)}>
+                        <Icon type="play" />
+                      </button>
+                      <button onClick={() => handleShare(id)}>
+                        <Icon type="share" />
+                      </button>
+                      <button onClick={() => removeLike(id)}>
+                        <Icon type="delete" />
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -75,16 +100,18 @@ const Profile = ({ setOriginPage, isLoggedIn, userName, userEmail, onLogout }) =
             })
           ) : (
             <p>Keine gelikten Szenarien.</p>
-          )
-        )}
+          ))}
       </div>
 
-      <button onClick={() => toggleSection('favorites')} className="an-abmelden-toggle-button">
+      <button
+        onClick={() => toggleSection("favorites")}
+        className="an-abmelden-toggle-button"
+      >
         Favoriten
       </button>
-      <div className='scenario-container'>
-        {activeSection === 'favorites' && (
-          savedScenarios.length > 0 ? (
+      <div className="scenario-container">
+        {activeSection === "favorites" &&
+          (savedScenarios.length > 0 ? (
             savedScenarios.map((id, index) => {
               const { title, description, image } = getScenarioDetails(id);
               return (
@@ -94,9 +121,15 @@ const Profile = ({ setOriginPage, isLoggedIn, userName, userEmail, onLogout }) =
                     <h4>{title}</h4>
                     <p>{description}</p>
                     <div className="button-group">
-                      <button onClick={() => playScenario(id)}>Spielen</button>
-                      <button onClick={() => handleShare(id)}>Teilen</button>
-                      <button onClick={() => removeFavorite(id)}>Löschen</button>
+                      <button onClick={() => playScenario(id, title)}>
+                        <Icon type="play" />
+                      </button>
+                      <button onClick={() => handleShare(id)}>
+                        <Icon type="share" />
+                      </button>
+                      <button onClick={() => removeFavorite(id)}>
+                        <Icon type="delete" />
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -104,14 +137,16 @@ const Profile = ({ setOriginPage, isLoggedIn, userName, userEmail, onLogout }) =
             })
           ) : (
             <p>Keine gespeicherten Szenarien.</p>
-          )
-        )}
+          ))}
       </div>
 
-      <button onClick={() => toggleSection('contact')} className="an-abmelden-toggle-button">
+      <button
+        onClick={() => toggleSection("contact")}
+        className="an-abmelden-toggle-button"
+      >
         Kontakt
       </button>
-      {activeSection === 'contact' && (
+      {activeSection === "contact" && (
         <Contact onSubmit={handleContactSubmit} />
       )}
     </main>

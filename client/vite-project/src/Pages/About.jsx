@@ -1,4 +1,5 @@
 import "../Styles/About.css";
+import Icon from "../Components/Icons";
 
 // Die PUBLIC_URL-Konstante definieren
 const PUBLIC_URL = import.meta.env.PUBLIC_URL || "";
@@ -86,14 +87,14 @@ function About() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  GitHub
+                  <Icon type="github" />
                 </a>
                 <a
                   href={member.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  LinkedIn
+                  <Icon type="linkedin" />
                 </a>
               </div>
             </div>

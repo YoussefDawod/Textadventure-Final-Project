@@ -37,23 +37,11 @@
   height: 100px; /* Anpassung der Höhe für die Beschreibung */
 }
 
-.button-container{
-  
+.play, .icon {
   align-self: flex-end;
-}
-
-.button-start {
-  margin: 1px;
-  padding: 10px;
-  border: none;
-  border-radius: 15px;
-  background-color: rgba(0, 0, 0, 0.5);
-  color: white;
-  cursor: pointer;
-}
-
-.button-start:hover {
-  background-color: rgba(0, 0, 0, 0.7);
+  justify-content: center;
+  margin-top: 5px;
+  height: 30px;
 }
 
 .stories-container {

@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
 
+
 const Header = () => {
   return (
     <header>
       <Link className="logo" to="/">
-        <img src="/Logo/TIA-Logo-1.png" alt="Logo" />
+        <img src="/Logo/tia-logo.svg" alt="Logo"/>
       </Link>
 
       <nav>
