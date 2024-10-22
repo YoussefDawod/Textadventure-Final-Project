@@ -1,16 +1,9 @@
 import { useState } from "react";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  useParams,
-  useNavigate,
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useParams, useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import Home from "./Pages/Home";
 import Profile from "./Pages/Profile";
 import Register from "./Pages/Register";
-import Contact from "./Pages/Contact";
 import About from "./Pages/About";
 import Stories from "./Pages/StoriesSeite/Stories";
 import GameScreen from "./Pages/StoriesSeite/GameScreen";
@@ -42,7 +35,7 @@ function App() {
       <Router>
         <Routes>
           <Route
-            path="/game/:scenarioId"
+            path="/game/:scenarioId/:scenarioTitle"
             element={
               <NoHeaderFooterLayout>
                 <GameScreenWrapper originPage={originPage} />
@@ -90,13 +83,13 @@ function App() {
 
 const GameScreenWrapper = ({ originPage }) => {
   const navigate = useNavigate();
-  const { scenarioId } = useParams();
+  const { scenarioId, scenarioTitle } = useParams();
 
   const exitGame = () => {
     navigate(`/${originPage}`);
   };
 
-  return <GameScreen scenarioId={parseInt(scenarioId, 10)} onExit={exitGame} />;
+  return <GameScreen scenarioId={scenarioId} scenarioTitle={decodeURIComponent(scenarioTitle)} onExit={exitGame} />;
 };
 
 GameScreenWrapper.propTypes = {

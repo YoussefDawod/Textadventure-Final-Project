@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import { useNavigate } from "react-router-dom";
 import ScenarioCard from "./ScenarioCard";
 import scenarios from "../../Scenarios/scenarios";
-import NoHeaderFooterLayout from "../../Components/NoHeaderFooterLayout";
 import useScenarioContext from "../../Scenarios/useScenarioContext";
 
 const Stories = ({ setOriginPage }) => {
@@ -13,13 +12,13 @@ const Stories = ({ setOriginPage }) => {
   const [customTitle, setCustomTitle] = useState("");
   const [customDescription, setCustomDescription] = useState("");
 
-  const playScenario = (scenarioId) => {
+  const playScenario = (scenarioId, scenarioTitle) => {
     setOriginPage("stories");
-    navigate(`/game/${scenarioId}`);
+    navigate(`/game/${scenarioId}/${encodeURIComponent(scenarioTitle)}`);
   };
 
-  const startGame = (scenarioId) => {
-    playScenario(scenarioId);
+  const startGame = (scenarioId, scenarioTitle) => {
+    playScenario(scenarioId, scenarioTitle);
   };
 
   const createCustomScenario = () => {
@@ -29,9 +28,8 @@ const Stories = ({ setOriginPage }) => {
       description: customDescription,
       likes: 0,
     };
-    // Neue Änderung
     scenarios.unshift(newScenario); // Fügt das neue Szenario an den Anfang der Liste hinzu
-    playScenario(newScenario.id);
+    playScenario(newScenario.id, newScenario.title); // Änderung: Verwenden von ID und Titel
   };
 
   return (
@@ -69,7 +67,7 @@ const Stories = ({ setOriginPage }) => {
               <ScenarioCard
                 key={scenario.id}
                 scenario={scenario}
-                onPlay={() => startGame(scenario.id)}
+                onPlay={() => startGame(scenario.id, scenario.title)} // Änderung: Verwenden von ID und Titel
                 onLike={() => likeScenario(scenario.id)} 
                 onSave={() => saveScenario(scenario.id)} 
                 onShare={() => console.log(`Szenario ${scenario.id} geteilt`)}

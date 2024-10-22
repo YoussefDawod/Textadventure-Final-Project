@@ -1,31 +1,30 @@
-import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState, useEffect, useCallback } from 'react';
 import '../../Styles/storiesSeite/GameScreen.css';
 import PropTypes from 'prop-types';
 
-const GameScreen = ({ scenarioId, onExit }) => {
-  const navigate = useNavigate();
-
+// Änderung: Verwenden von Szenario-ID und Szenario-Titel
+const GameScreen = ({ scenarioTitle, onExit }) => {
   const [currentText, setCurrentText] = useState('');
   const [userInput, setUserInput] = useState('');
   const [loading, setLoading] = useState(false);
   const [gameStarted, setGameStarted] = useState(false);
 
-  const dummyInitialText = "Willkommen in deinem Abenteuer!";
+  const dummyInitialText = `Willkommen in deinem Abenteuer! Szenario Titel: ${scenarioTitle}`;
   const dummyNextText = "Dies ist der nächste Abschnitt deines Abenteuers.";
 
-  useEffect(() => {
-    startGame();
-  }, []);
-
-  const startGame = async () => {
+  // Änderung: Verwenden von useCallback, um die Funktion zu stabilisieren
+  const startGame = useCallback(async () => {
     setLoading(true);
     setTimeout(() => {
       setCurrentText(dummyInitialText);
       setGameStarted(true);
       setLoading(false);
     }, 1000);
-  };
+  }, [dummyInitialText]);
+
+  useEffect(() => {
+    startGame();
+  }, [startGame]);
 
   const nextStep = async () => {
     setLoading(true);
@@ -82,7 +81,7 @@ const GameScreen = ({ scenarioId, onExit }) => {
 };
 
 GameScreen.propTypes = {
-  scenarioId: PropTypes.number.isRequired,
+  scenarioTitle: PropTypes.string.isRequired, // Änderung: Verwenden von Titel
   onExit: PropTypes.func.isRequired,
 };
 
