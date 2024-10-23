@@ -1,15 +1,23 @@
+// Express
 const express = require("express");
 const app = express();
 
+// API Key
 let apiKey = "D7-mCUkDibmneqBpJ9VWzBmnOByFEKwSuFDGhOgPzSFGSxRmTVZ";
 
+// Count Steps
+let counter = 0;
+
+// Fetch Start
 let keyWords = `Neo in der Matrix`;
 let bindingWords = ` und bekannte dinge aus der Welt`;
-//${keyWords + bindingWords}.
+
+// FetchFollow
 let text = `
 Neo fand einen Riss in der Realität, der ihn in eine parallele Dimension führte, in der die Gesetze der Physik völlig anders funktionierten.
 Zu Neos Schrecken stellte er fest, dass in dieser Dimension böse Kreaturen aus reiner Finsternis herrschten, die die Energien der Menschen aussaugten. Er musste sich mit ihnen anlegen und eine Möglichkeit finden, in seine eigene Welt zurückzukehren, bevor es zu spät war.`;
 
+// Fetch Form
 let form = `
 { 
 "1": "Text",
@@ -17,12 +25,12 @@ let form = `
 "3": "Text"
 }`
 
-let counter = 0;
-
+// Post Header
 var myHeaders = new Headers();
 myHeaders.append("Authorization", `Bearer ${apiKey}`);
 myHeaders.append("Content-Type", "application/json");
 
+// Post Body
 var raw = JSON.stringify({
   model: "anthropic/claude-3-haiku:beta",
   message: `Eine Kurze Geschichte rund um ${keyWords + bindingWords} mit 1-2 Sätzen Text. Danach bitte eine Zeile freilassen. Nun gebe bitte 3 Auswahlmöglichkeiten welche die Geschichte weiterschreiben. 
@@ -38,6 +46,7 @@ var raw2 = JSON.stringify({
   Und danach keine Worte mehr. `,
 });
 
+// Request Options
 var requestOptions = {
   method: "POST",
   headers: myHeaders,
@@ -52,8 +61,9 @@ var requestOptions2 = {
   redirect: "follow",
 };
 
-fetch2();
+fetchFollow();
 
+// Fetch Funktionen
 async function fetchStart() {
   try {
     let newData;
@@ -76,7 +86,7 @@ async function fetchStart() {
   }
 }
 
-async function fetch2() {
+async function fetchFollow() {
   try {
     let newData;
     let endResult;
@@ -98,8 +108,9 @@ async function fetch2() {
   }
 }
 
+// Print Site
 function showSite(variable) {
-  // Define routes for App2
+  // Define routes for text/
   app.get(`/${counter}`, (req, res) => {
     res.send(`${variable}`);
   });
