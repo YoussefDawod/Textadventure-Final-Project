@@ -5,7 +5,7 @@ const Icon = ({ type }) => {
   switch (type) {
     case "play":
       return (
-        <svg className="icon" viewBox="0 0 24 24">
+        <svg className="icon play" viewBox="0 0 24 24">
             <title>Play</title>
           <path
             fill="currentColor"
@@ -16,7 +16,7 @@ const Icon = ({ type }) => {
     case "delete":
       return (
         <svg
-          className="icon"
+          className="icon delete"
           viewBox="0 0 24 24"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -62,7 +62,7 @@ const Icon = ({ type }) => {
     case "share":
       return (
         <svg
-          className="icon"
+          className="icon share"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 48 48"
         >
@@ -121,7 +121,7 @@ const Icon = ({ type }) => {
     case "google":
       return (
         <svg
-          className="icon"
+          className="icon google"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 48 48"
         >
@@ -147,7 +147,7 @@ const Icon = ({ type }) => {
     case "facebook":
       return (
         <svg
-          className="icon"
+          className="icon facebook"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 48 48"
         >
@@ -161,7 +161,7 @@ const Icon = ({ type }) => {
     case "linkedin":
       return (
         <svg
-          className="icon"
+          className="icon linkedin"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 48 48"
         >
@@ -181,28 +181,27 @@ const Icon = ({ type }) => {
         </svg>
       );
 
-    case "heart":
-      return (
-        <svg
-          className="icon"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 48 48"
-        >
-            <title>Like</title>
-          <path
-            d="M23.9925 44L30.708 39.1056C33.0795 37.377 41.0564 31.121 44.1704 23.1719C46.5404 17.1261 43.6589 10.2648 37.7354 7.84647C32.6715 5.77742 27.012 7.63187 24 11.9994C20.9895 7.63039 15.3285 5.77742 10.2645 7.84647C4.34107 10.2648 1.45958 17.1261 3.82957 23.1719C6.94356 31.121 14.922 37.377 17.292 39.1056L23.9925 44Z"
+      case "heart":
+        return (
+          <svg
+            className="icon heart"
+            width="800px"
+            height="800px"
+            viewBox="0 0 16 16"
             fill="none"
-            stroke="currentColor"
-            strokeWidth="2.5"
-            strokeLinecap="square"
-            strokeLinejoin="miter"
-          />
-        </svg>
-      );
+            xmlns="http://www.w3.org/2000/svg"
+            style={{ fill: "currentColor" }}
+          >
+            <path
+              d="M1.24264 8.24264L8 15L14.7574 8.24264C15.553 7.44699 16 6.36786 16 5.24264V5.05234C16 2.8143 14.1857 1 11.9477 1C10.7166 1 9.55233 1.55959 8.78331 2.52086L8 3.5L7.21669 2.52086C6.44767 1.55959 5.28338 1 4.05234 1C1.8143 1 0 2.8143 0 5.05234V5.24264C0 6.36786 0.44699 7.44699 1.24264 8.24264Z"
+              fill="currentColor"
+            />
+          </svg>
+        );
     case "exit":
       return (
         <svg
-          className="icon"
+          className="icon exit"
           width="800px"
           height="800px"
           viewBox="0 0 24 24"
@@ -229,7 +228,7 @@ const Icon = ({ type }) => {
     case "send":
       return (
         <svg
-          className="icon"
+          className="icon send"
           width="800px"
           height="800px"
           viewBox="0 0 24 24"
@@ -246,7 +245,7 @@ const Icon = ({ type }) => {
     case "save":
       return (
         <svg
-          className="icon"
+          className="icon save"
           width="800px"
           height="800px"
           viewBox="0 0 24 24"
@@ -281,7 +280,7 @@ const Icon = ({ type }) => {
     case "github":
       return (
         <svg
-          className="icon"
+          className="icon github"
           width="800px"
           height="800px"
           viewBox="0 0 24 24"
@@ -298,7 +297,7 @@ const Icon = ({ type }) => {
     case "save-pdf":
       return (
         <svg
-          className="icon"
+          className="icon save-pdf"
           width="800px"
           height="800px"
           viewBox="0 0 20 20"
@@ -332,7 +331,7 @@ const Icon = ({ type }) => {
     case "next":
       return (
         <svg
-          className="icon"
+          className="icon next"
           width="800px"
           height="800px"
           viewBox="-0.5 0 25 25"

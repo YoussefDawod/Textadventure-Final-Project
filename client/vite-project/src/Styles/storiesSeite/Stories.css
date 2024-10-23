@@ -39,9 +39,7 @@
 
 .play, .icon {
   align-self: flex-end;
-  justify-content: center;
   margin-top: 5px;
-  height: 30px;
 }
 
 .stories-container {

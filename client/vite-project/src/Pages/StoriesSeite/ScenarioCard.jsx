@@ -1,13 +1,27 @@
+import { useState } from "react";
 import PropTypes from "prop-types";
 import "../../Styles/storiesSeite/ScenarioCard.css";
 import Icon from "../../Components/Icons";
 
 const ScenarioCard = ({ scenario, onLike, onSave, onShare, onPlay }) => {
+  const [isLiked, setIsLiked] = useState(false);
+  const [isSaved, setIsSaved] = useState(false);
+
+  const handleLike = () => {
+    setIsLiked(!isLiked);
+    onLike();
+  };
+
+  const handleSave = () => {
+    setIsSaved(!isSaved);
+    onSave();
+  };
+
   return (
     <div className="scenario-card" style={{ backgroundImage: `url(${scenario.image || '/Scenarios-Images/placeholder.jpg'})` }}>
       <div className="scenario-header">
         <div className="scenario-logo">
-        <img src="/Logo/tia-logo.svg" alt="Logo"/>
+          <img src="/Logo/tia-logo.svg" alt="Logo"/>
         </div>
         <button className="scenario-share" onClick={onShare}>Teilen</button>
       </div>
@@ -16,9 +30,15 @@ const ScenarioCard = ({ scenario, onLike, onSave, onShare, onPlay }) => {
         <p>{scenario.description}</p>
       </div>
       <div className="scenario-actions">
-        <button onClick={onLike}><Icon type="heart" /> ({scenario.likes})</button>
-        <button onClick={onSave}><Icon type="save" /></button>
-        <button onClick={onPlay}><Icon type="play" /></button>
+        <button onClick={handleLike}>
+          <Icon type="heart" style={{ color: isLiked ? 'red' : 'inherit' }} /> ({scenario.likes})
+        </button>
+        <button onClick={handleSave}>
+          <Icon type="save" style={{ color: isSaved ? 'blue' : 'inherit' }} />
+        </button>
+        <button onClick={onPlay}>
+          <Icon type="play" />
+        </button>                                        
       </div>
     </div>
   );
