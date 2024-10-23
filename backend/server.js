@@ -13,7 +13,7 @@ app.use("/app2", app2);
 /*  Mount App3 */
 const app3 = require("./App3/Text.js");
 /*  Mounts App3 at the '/text' endpoint  */
-app.use("/api/text", app3);
+app.use("/api/", app3);
 /*  Mount App4 */
 const app4 = require("./App4/Straico-Image.js");
 /*  Mounts App4 at the '/image' endpoint  */
