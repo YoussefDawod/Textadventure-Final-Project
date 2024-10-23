@@ -40,9 +40,9 @@
 .scenario {
   margin: 1rem 0 1rem 0 ;
   max-width: 500px;
+  height: 125px;
   display: flex;
   align-items: center;
-  margin-bottom: 10px;
   border: none;
   border-radius: 1rem;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.562);
@@ -51,8 +51,8 @@
 }
 
 .scenario-image {
-  width: 125px;
-  height: 100px;
+  width:150px;
+  height: 125px;
   object-fit: cover;
   margin-right: 5px;
   border-radius: 1rem 0 0 1rem;
@@ -61,28 +61,32 @@
 .scenario-details {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
+  height: 100%;
 }
 
 .scenario h4 {
-  font-size: 0.9em;
+  font-size: 1em;
+  margin-top:0.5rem;
 }
 
 .scenario p {
-  font-size: 0.7em;
+  font-size: 0.9em;
+  margin-top: 0.2rem;
 }
 
 .button-group {
   display: flex;
-  justify-content:end;
+  justify-content: end;
 }
 
 .button-group button{
+  display: flex;
   max-height: 30px;
   margin: 1px;
-  padding: 10px;
+  padding: 0 1rem 0 ;
   border: none;
-  background-color:rgba(255, 0, 0, 0);
+  background-color:rgba(0, 0, 0, 0);
   cursor: pointer;
 }
 
