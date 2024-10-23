@@ -54,7 +54,7 @@ var requestOptions2 = {
   redirect: "follow",
 };
 
-fetchFollow();
+//fetchFollow();
 
 // Fetch Funktionen
 async function fetchStart() {
