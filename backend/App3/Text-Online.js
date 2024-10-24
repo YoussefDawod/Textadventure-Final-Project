@@ -102,7 +102,7 @@ Hier ist die Form. ${formChoice}. Und danach keine Worte mehr.`,
         "Content-type": "application/json",
       },
     };
-    fetch(`http://localhost:5000/api/text/0`, postOptions)
+    fetch(`https://adventure.api.binarybears.net/api/text/0`, postOptions)
       .then((response) => response.json())
       .then((json) => console.log(json));
   } catch (error) {
@@ -118,9 +118,9 @@ async function fetchFollow(variable) {
   //Post Body
   var raw2 = JSON.stringify({
     model: "anthropic/claude-3-haiku:beta",
-    message: `${textArray}. Schreibe mir bitte die Geschichte in einem Absatz weiter. Gebe nicht den eingegeben Text aus.
+    message: `${variable}. Schreibe mir bitte die Geschichte in einem Absatz weiter.
     Hier ist die Form dafür. ${formText}. Und danach keine Worte mehr.
-    Danach gebe bitte 3 unterschiedliche Optionen was als nächstes passieren soll nach dem Absatz den du geschrieben hast. Jede Option sollte aus 1-2 Sätzen bestehen.
+    Nun gebe bitte 3 unterschiedliche Optionen was als nächstes passieren soll nach dem Absatz den du geschrieben hast. Jede Option sollte aus 1-2 Sätzen bestehen.
     Teile der Geschichte sollten nicht doppelt vorkommen.
     Die Geschichte sollte ausgefallen sein. Und es sollte in dieser Form zurückkommen. Die Geschichte sollte nur dort landen wo Text steht. 
     Hier ist die Form. ${formChoice}. Und danach keine Worte mehr.`,
@@ -161,7 +161,7 @@ async function fetchFollow(variable) {
         "Content-type": "application/json",
       },
     };
-    fetch(`http://localhost:5000/api/text/0`, postOptions)
+    fetch(`https://adventure.api.binarybears.net/api/text/0`, postOptions)
       .then((response) => response.json())
       .then((json) => console.log(json));
   } catch (error) {
