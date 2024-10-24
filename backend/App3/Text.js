@@ -64,7 +64,7 @@ async function fetchStart(variable) {
     model: "anthropic/claude-3-haiku:beta",
     message: `Eine Kurze Geschichte rund um ${
       keyWords + bindingWords
-    }. Schreibe mir bitte die Geschichte ausgefallen in ein paar Sätzen weiter.
+    }. Schreibe mir bitte die Geschichte in deutsch ausgefallen in ein paar Sätzen weiter.
 Hier ist die Form dafür. ${formText}. Und danach keine Worte mehr.
 Nun gebe bitte 3 unterschiedliche Optionen welche die Geschichte in unterschiedliche Richtungen führen kann. Jede Option sollte aus 1-2 Sätzen bestehen.
 Die Geschichte sollte ausgefallen sein. Und es sollte in dieser Form zurückkommen. Die Geschichte sollte nur dort landen wo Text steht. 
@@ -105,6 +105,9 @@ Hier ist die Form. ${formChoice}. Und danach keine Worte mehr.`,
     fetch(`http://localhost:5000/api/text/0`, postOptions)
       .then((response) => response.json())
       .then((json) => console.log(json));
+    if(newOptions === `` || undefined){
+      fetchStart(variable)
+    }
   } catch (error) {
     console.log(error);
   }
@@ -118,7 +121,7 @@ async function fetchFollow(variable) {
   //Post Body
   var raw2 = JSON.stringify({
     model: "anthropic/claude-3-haiku:beta",
-    message: `${textArray}. Schreibe mir bitte die Geschichte in einem Absatz weiter. Gebe nicht den eingegeben Text aus.
+    message: `${textArray}. Schreibe mir bitte die Geschichte in deutsch in einem Absatz weiter. Gebe nicht den eingegeben Text aus.
     Hier ist die Form dafür. ${formText}. Und danach keine Worte mehr.
     Danach gebe bitte 3 unterschiedliche Optionen was als nächstes passieren soll nach dem Absatz den du geschrieben hast. Jede Option sollte aus 1-2 Sätzen bestehen.
     Teile der Geschichte sollten nicht doppelt vorkommen.
@@ -164,6 +167,9 @@ async function fetchFollow(variable) {
     fetch(`http://localhost:5000/api/text/0`, postOptions)
       .then((response) => response.json())
       .then((json) => console.log(json));
+      if(newOptions.text === `` || undefined){
+        fetchStart(variable)
+      }
   } catch (error) {
     console.log(error);
   }
