@@ -30,7 +30,6 @@ let formChoice = `
 2: "Text",
 3: "Text"`;
 
-
 function changeKey(variable) {
   keyWords = variable;
   fetchStart();
@@ -47,6 +46,7 @@ function saveStory(variable) {
   let text = variable;
   textArray.push(text);
   console.log(textArray);
+  printStory(textArray);
 }
 
 // Fetch Funktionen
@@ -93,7 +93,7 @@ Hier ist die Form. ${formChoice}. Und danach keine Worte mehr.`,
     let option3 = options[7];
     let newOptions = { text, option1, option2, option3 };
     console.log(newOptions);
-    
+
     if (newOptions === `` || undefined) {
       fetchStart(variable);
     } else {
@@ -194,6 +194,14 @@ function showOptionSite(variable) {
   });
   optioncounter += 1;
   console.log("optioncounter:" + optioncounter);
+}
+
+// Print Site /api/option/
+function printStory(variable) {
+  // Define routes for api/text/post
+  app.get(`/story/0`, (req, res) => {
+    res.send(variable);
+  });
 }
 
 // Export the app
