@@ -17,11 +17,6 @@ let option;
 let keyWords;
 let bindingWords = ` und bekannte dinge aus der Welt`;
 
-// Post Header
-var myHeaders = new Headers();
-myHeaders.append("Authorization", `Bearer ${apiKey}`);
-myHeaders.append("Content-Type", "application/json");
-
 // FetchFollow
 let textArray = [];
 
@@ -34,6 +29,7 @@ let formChoice = `
 1: "Text",
 2: "Text",
 3: "Text"`;
+
 
 function changeKey(variable) {
   keyWords = variable;
@@ -77,6 +73,7 @@ Hier ist die Form. ${formChoice}. Und danach keine Worte mehr.`,
     body: raw,
     redirect: "follow",
   };
+
   let newData;
   let endResult;
   try {
@@ -95,18 +92,13 @@ Hier ist die Form. ${formChoice}. Und danach keine Worte mehr.`,
     let option2 = options[5];
     let option3 = options[7];
     let newOptions = { text, option1, option2, option3 };
-    let postOptions = {
-      method: "POST",
-      body: JSON.stringify(newOptions),
-      headers: {
-        "Content-type": "application/json",
-      },
-    };
-    fetch(`http://localhost:5000/api/text/0`, postOptions)
-      .then((response) => response.json())
-      .then((json) => console.log(json));
-    if(newOptions === `` || undefined){
-      fetchStart(variable)
+    console.log(newOptions);
+    
+    if (newOptions === `` || undefined) {
+      fetchStart(variable);
+    } else {
+      showTextSite(JSON.stringify(newOptions));
+      saveStory(newOptions.text);
     }
   } catch (error) {
     console.log(error);
@@ -118,7 +110,7 @@ async function fetchFollow(variable) {
   var myHeaders = new Headers();
   myHeaders.append("Authorization", `Bearer ${apiKey}`);
   myHeaders.append("Content-Type", "application/json");
-  //Post Body
+  // Post Body
   var raw2 = JSON.stringify({
     model: "anthropic/claude-3-haiku:beta",
     message: `${textArray}. Schreibe mir bitte die Geschichte in deutsch in einem Absatz weiter. Gebe nicht den eingegeben Text aus.
@@ -128,7 +120,7 @@ async function fetchFollow(variable) {
     Die Geschichte sollte ausgefallen sein. Und es sollte in dieser Form zurückkommen. Die Geschichte sollte nur dort landen wo Text steht. 
     Hier ist die Form. ${formChoice}. Und danach keine Worte mehr.`,
   });
-  // Request Options
+  //Request Options
   var requestOptions2 = {
     method: "POST",
     headers: myHeaders,
@@ -157,40 +149,17 @@ async function fetchFollow(variable) {
 
     let newOptions = { text, option1, option2, option3 };
     console.log(newOptions);
-    let postOptions = {
-      method: "POST",
-      body: JSON.stringify(newOptions),
-      headers: {
-        "Content-type": "application/json",
-      },
-    };
-    fetch(`http://localhost:5000/api/text/0`, postOptions)
-      .then((response) => response.json())
-      .then((json) => console.log(json));
-      if(newOptions.text === `` || undefined){
-        fetchStart(variable)
-      }
+
+    if (newOptions.text === `` || undefined) {
+      fetchStart(variable);
+    } else {
+      showTextSite(JSON.stringify(newOptions));
+      saveStory(newOptions.text);
+    }
   } catch (error) {
     console.log(error);
   }
 }
-
-// Route that receives a POST request to /api/text/
-app.post(`/text/0`, function (req, res) {
-  if (textcounter === 0) {
-    const body = req.body;
-    console.log(body);
-    let newBody = JSON.stringify(body);
-    showTextSite(newBody);
-    saveStory(body.text);
-  } else {
-    const body = req.body;
-    console.log(body);
-    let newBody = JSON.stringify(body);
-    showTextSite(newBody);
-    saveStory(body.text);
-  }
-});
 
 // Print Site api/text/
 function showTextSite(variable) {
