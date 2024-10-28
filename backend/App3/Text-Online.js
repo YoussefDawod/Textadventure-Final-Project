@@ -46,6 +46,7 @@ function saveStory(variable) {
   let text = variable;
   textArray.push(text);
   console.log(textArray);
+  printStory(textArray);
 }
 
 // Fetch Funktionen
@@ -193,6 +194,14 @@ function showOptionSite(variable) {
   });
   optioncounter += 1;
   console.log("optioncounter:" + optioncounter);
+}
+
+// Print Site /api/option/
+function printStory(variable) {
+  // Define routes for api/text/post
+  app.get(`/story/0`, (req, res) => {
+    res.send(variable);
+  });
 }
 
 // Export the app
