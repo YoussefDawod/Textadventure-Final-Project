@@ -7,6 +7,7 @@ function App() {
   const [text, setItems1] = useState([]);
   const [image, setItems2] = useState([]);
   let load = false;
+  let counter = 0;
 
   useEffect(() => {
     fetchText();
@@ -14,9 +15,7 @@ function App() {
   }, []);
 
   function fetchText() {
-    fetch("/text/0", {
-      mode: 'cors'
-    })
+    fetch(`/text/${counter}`)  
       .then((response1) => response1.json())
       .then((data1) => {
         setItems1(data1);
@@ -29,15 +28,13 @@ function App() {
   }
 
   function fetchImage() {
-    fetch("/image/0", {
-      mode: 'cors'
-    })
+    fetch(`/image/${counter}`)
       .then((response4) => response4.text())
       .then((data4) => {
         setItems2(data4);
         console.log(image);
         load = true;
-        
+        counter += 1;
       })
       .catch((error) => {
         console.error(error);
@@ -60,3 +57,4 @@ function App() {
 }
 
 export default App;
+
