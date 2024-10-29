@@ -30,7 +30,6 @@ let formChoice = `
 2: "Text",
 3: "Text"`;
 
-
 function changeKey(variable) {
   keyWords = variable;
   fetchStart();
@@ -93,7 +92,7 @@ Hier ist die Form. ${formChoice}. Und danach keine Worte mehr.`,
     let option3 = options[7];
     let newOptions = { text, option1, option2, option3 };
     console.log(newOptions);
-    
+
     if (newOptions === `` || undefined) {
       fetchStart(variable);
     } else {
