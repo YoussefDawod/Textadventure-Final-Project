@@ -67,12 +67,11 @@ async function fetchStart(variable) {
     );
     const jsondata = await response.json();
     newData = jsondata.data.images;
-    let first = `{ "link": `;
-    let last = ` }`;
-    result = first + newData + last;
+    
+    result = newData;
 
     console.log(result);
-    showSite(result);
+    showSite(JSON.stringify(result));
   } catch (error) {
     fetchStart(keyWord);
   }
@@ -107,12 +106,11 @@ async function fetchFollow(variable) {
     );
     const jsondata = await response.json();
     newData = jsondata.data.images;
-    let first = `{ "link": `;
-    let last = ` }`;
-    result = first + newData + last;
+    
+    result = newData;
 
     console.log(result);
-    showSite(result);
+    showSite(JSON.stringify(result));
   } catch (error) {
     fetchFollow(text);
   }
