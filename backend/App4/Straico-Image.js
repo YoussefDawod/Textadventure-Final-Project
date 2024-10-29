@@ -8,6 +8,10 @@ let apiKey = "D7-mCUkDibmneqBpJ9VWzBmnOByFEKwSuFDGhOgPzSFGSxRmTVZ";
 // Count Steps
 let imagecounter = 0;
 
+//BildArray
+let thisImage;
+let imageArray = [];
+
 // Fetch Start
 let keyWord;
 let bindingWords = ` und bekannte dinge aus der Welt`;
@@ -16,6 +20,7 @@ let img = `Mach mir bitte ein einzelnes Bild dazu`;
 // FetchFollow
 let img2 = `Mach mir bitte ein einzelnes Bild zu dem letzen Stand in der Geschichte`;
 let text;
+let imgtext;
 
 function changeKey(variable) {
   keyWord = variable;
@@ -24,14 +29,14 @@ function changeKey(variable) {
 
 function useOption(variable) {
   text = variable;
-  fetchFollow(text);
+  fetchFollow(keyWord + ` ` + text);
 }
 
 function saveStory(variable) {
-  text = variable;
-  textArray.push(text);
-  console.log(textArray);
+  thisImage = variable;
+  imageArray.push(thisImage);
 }
+
 
 // Fetch Funktionen
 async function fetchStart(variable) {
@@ -62,14 +67,13 @@ async function fetchStart(variable) {
     );
     const jsondata = await response.json();
     newData = jsondata.data.images;
-    let first = `{ "link": `;
-    let last = ` }`;
-    result = first + newData + last;
+    
+    result = newData;
 
     console.log(result);
-    showSite(result);
+    showSite(JSON.stringify(result));
   } catch (error) {
-    console.log(error);
+    fetchStart(keyWord);
   }
 }
 
@@ -102,14 +106,13 @@ async function fetchFollow(variable) {
     );
     const jsondata = await response.json();
     newData = jsondata.data.images;
-    let first = `{ "link": `;
-    let last = ` }`;
-    result = first + newData + last;
+    
+    result = newData;
 
     console.log(result);
-    showSite(result);
+    showSite(JSON.stringify(result));
   } catch (error) {
-    console.log(error);
+    fetchFollow(text);
   }
 }
 
@@ -128,12 +131,14 @@ app.post(`/0`, function (req, res) {
   }
 });
 
+
 // Print Site
 function showSite(variable) {
   // Define routes for image/
   app.get(`/${imagecounter}`, (req, res) => {
     res.send(`${variable}`);
   });
+  saveStory(variable);
   imagecounter += 1;
   console.log("imagecounter:" + imagecounter);
 }
