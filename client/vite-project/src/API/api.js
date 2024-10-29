@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = '/api'; // Verwenden Sie den Proxy-Pfad
+const BASE_URL = 'https://adventure.api.binarybears.net/api';
 
 const apiClient = axios.create({
   baseURL: BASE_URL,

@@ -10,13 +10,8 @@ const app = express();
 app.use(cors({
   origin: 'http://localhost:5173', // Port von Vite
   credentials: true,
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS', // Hinzugefügt OPTIONS
-  allowedHeaders: 'Content-Type,Authorization' // Hinzugefügt
 }));
 app.use(express.json());
-
-// Handle Preflight Requests
-app.options('*', cors()); // Hinzugefügt
 
 // Mount App1
 const app1 = require("./App1/User.js");
@@ -32,12 +27,10 @@ app.use("/app2", app2);
 const app3 = require("./App3/Text.js");
 /*  Mounts App3 at the '/text' endpoint  */
 app.use("/api/", app3);
-
 /*  Mount App4 */
 const app4 = require("./App4/Straico-Image.js");
 /*  Mounts App4 at the '/image' endpoint  */
 app.use("/api/image", app4);
-
 /* Start the server */
 const port = 5000;
 app.listen(port, () => {
