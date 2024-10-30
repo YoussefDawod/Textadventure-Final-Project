@@ -3,28 +3,25 @@ import '../../Styles/storiesSeite/GameScreen.css';
 import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
 import Icon from "../../Components/Icons";
-import { fetchOption, fetchText, fetchImage, postOption, postImage } from '../../API/api';
 
 const GameScreen = ({ onExit }) => {
-  const { scenarioTitle } = useParams();
+  const {scenarioTitle } = useParams();
   const [currentText, setCurrentText] = useState('');
   const [userInput, setUserInput] = useState('');
   const [loading, setLoading] = useState(false);
   const [gameStarted, setGameStarted] = useState(false);
 
+  const dummyInitialText = `Willkommen in deinem Abenteuer! Szenario Titel: ${scenarioTitle}`;
+  const dummyNextText = "Dies ist der nächste Abschnitt deines Abenteuers.";
+
   const startGame = useCallback(async () => {
     setLoading(true);
-    try {
-      const initialText = await fetchText(0); // Initial text ID
-      setCurrentText(`Willkommen in deinem Abenteuer! Szenario Titel: ${scenarioTitle}\n${initialText.text}`);
+    setTimeout(() => {
+      setCurrentText(dummyInitialText);
       setGameStarted(true);
-    } catch (error) {
-      console.error('Failed to start game:', error);
-      setCurrentText('Fehler beim Starten des Spiels. Bitte versuchen Sie es später erneut.');
-    } finally {
       setLoading(false);
-    }
-  }, [scenarioTitle]);
+    }, 1000);
+  }, [dummyInitialText]);
 
   useEffect(() => {
     startGame();
@@ -32,34 +29,21 @@ const GameScreen = ({ onExit }) => {
 
   const nextStep = async () => {
     setLoading(true);
-    try {
-      const nextText = await fetchText(1); // Next text ID
-      setCurrentText(nextText.text);
+    setTimeout(() => {
+      setCurrentText(dummyNextText);
       setUserInput('');
-    } catch (error) {
-      console.error('Failed to fetch next step:', error);
-      setCurrentText('Fehler beim Abrufen des nächsten Schritts. Bitte versuchen Sie es später erneut.');
-    } finally {
       setLoading(false);
-    }
+    }, 1000);
   };
 
   const submitInput = async () => {
-    if (!userInput.trim()) {
-      alert('Bitte geben Sie eine gültige Eingabe ein.');
-      return;
-    }
+    if (!userInput) return; 
     setLoading(true);
-    try {
-      const userResponse = await postOption({ data1: userInput }); // Option ID based on user input
-      setCurrentText(`Benutzereingabe: ${userInput}\n${userResponse.text}`);
+    setTimeout(() => {
+      setCurrentText(`Benutzereingabe: ${userInput}`);
       setUserInput('');
-    } catch (error) {
-      console.error('Failed to submit input:', error);
-      setCurrentText('Fehler beim Senden der Eingabe. Bitte versuchen Sie es später erneut.');
-    } finally {
       setLoading(false);
-    }
+    }, 1000);
   };
 
   const handleExit = () => {

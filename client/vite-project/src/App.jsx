@@ -11,6 +11,7 @@ import Header from "./Components/Header";
 import Footer from "./Components/Footer";
 import NoHeaderFooterLayout from "./Components/NoHeaderFooterLayout";
 import { ScenarioProvider } from "./Scenarios/ScenarioContext";
+import TestGameScreen from "./Pages/Test-GameScreen"; // Korrigierter Importpfad
 
 function App() {
   const [originPage, setOriginPage] = useState("stories");
@@ -45,6 +46,10 @@ function App() {
           <Route
             path="/register"
             element={!isLoggedIn && <Register onLogin={handleLogin} />}
+          />
+          <Route
+            path="/test-game"
+            element={<TestGameScreen />} // Route für die Test-GameScreen-Komponente
           />
           <Route
             path="*"
