@@ -1,0 +1,40 @@
+.gameScreen-background {
+  background-image: none;
+  background-color: #000000de;
+}
+
+.game-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+}
+
+.exit-button {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+.story-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70vh;
+}
+
+.user-interaction {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.user-interaction button {
+  background-color:rgba(0, 0, 0, 0);
+  border: none;
+}
+
+input[type="text"] {
+  width: 60%;
+  margin-right: 10px;
+}

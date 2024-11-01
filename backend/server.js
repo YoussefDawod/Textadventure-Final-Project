@@ -1,16 +1,29 @@
-/* Import the Express module */
+// Import the necessary modules
 const express = require("express");
-/* Create an instance of an Express application  */
+const cors = require("cors");
+require('dotenv').config();
+
+// Create an instance of an Express application
 const app = express();
-/*Mount App1 */
+
+// Middleware
+app.use(cors({
+  origin: 'http://localhost:5173', // Port von Vite
+  credentials: true,
+}));
+app.use(express.json());
+
+// Mount App1
 const app1 = require("./App1/User.js");
 /* Mounts App1 at the '/app1' endpoint / Not used in browser*/
 app.use("/app1", app1);
-/*  Mount App2 */
+
+// Mount App2
 const app2 = require("./App2/Models.js");
 /*  Mounts App2 at the '/app2' endpoint  / Not used in browser*/
 app.use("/app2", app2);
-/*  Mount App3 */
+
+// Mount App3
 const app3 = require("./App3/Text.js");
 /*  Mounts App3 at the '/text' endpoint  */
 app.use("/api/", app3);

@@ -1,0 +1,57 @@
+.home-background {
+  background-image: linear-gradient(rgba(255, 0, 0, 0.315), rgba(0, 0, 0, 0.5)),
+    url("/Images/1728686411258_DsVyoimi.png");
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow-y: auto;
+}
+
+/* Scrollbar ausblenden */
+.home-background::-webkit-scrollbar {
+  display: none;
+}
+
+/* Für Firefox */
+.home-background {
+  scrollbar-width: none; /* Firefox */
+}
+
+.tutorial {
+  padding: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.tutorial-step {
+  border-radius: 1rem;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  padding: 1rem;
+  background-color: rgba(0, 0, 0, 0.7);
+  box-shadow: rgb(0, 0, 0) 0 0 10px;
+}
+
+.tutorial-step.visible {
+  opacity: 1;
+}
+
+.home-button {
+  margin-top: 1rem;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 15px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.home-button:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+}

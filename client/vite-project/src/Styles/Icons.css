@@ -1,0 +1,35 @@
+.icon {
+  fill: currentColor;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.icon:hover {
+  transform: scale(1.2);
+}
+
+.play,
+.share,
+.delete,
+.save,
+.heart,
+.next,
+.send,
+.exit,
+.save-pdf {
+  color:white;
+}
+
+
+.play:hover,
+.share:hover,
+.delete:hover,
+.save:hover,
+.heart:hover,
+.next:hover,
+.send:hover,
+.exit:hover,
+.save-pdf:hover {
+  color: rgb(128, 255, 0);
+}
