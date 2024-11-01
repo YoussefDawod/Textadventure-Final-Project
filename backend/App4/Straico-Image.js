@@ -14,7 +14,7 @@ let imageArray = [];
 
 // Fetch Start
 let keyWord;
-let bindingWords = ` und bekannte dinge aus der Welt`;
+let bindingWords = ` und bekannte dinge aus der Welt aus der sie stammen.`;
 let img = `Mach mir bitte ein einzelnes Bild dazu`;
 
 // FetchFollow
