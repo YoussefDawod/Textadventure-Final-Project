@@ -5,6 +5,8 @@ import Fetch from "./Fetch";
 function Gamescreen() {
   const [data1, setTitle] = useState();
   let data = { data1 };
+  let localURL = "http://localhost:5000/api/"
+  let onlineURL = "https://adventure.api.binarybears.net/api/"
   
   const [load, setLoad] = useState(false);
   
@@ -27,7 +29,7 @@ function Gamescreen() {
     post();
 
     async function post() {
-      let urlOption = "http://localhost:5000/api/option/0";
+      let urlOption = `${localURL}option/0`;
       try {
         fetch(urlOption, options)
           .then((response) => response.json())
@@ -39,7 +41,7 @@ function Gamescreen() {
     }
 
     async function post2() {
-      let urlImage = "http://localhost:5000/api/image/0";
+      let urlImage = `${localURL}image/0`;
       try {
         fetch(urlImage, options)
           .then((response) => response.json())

@@ -17,10 +17,10 @@ var requestOptions = {
 };
 
 // Fetch Funktion
-fetch("https://api.straico.com/v1/models", requestOptions)
+/*fetch("https://api.straico.com/v1/models", requestOptions)
   .then((response) => response.text())
   .then((result) => console.log(result + "\n"))
-  .catch((error) => console.log("error", error));
+  .catch((error) => console.log("error", error));*/
 
 
 // Export the app

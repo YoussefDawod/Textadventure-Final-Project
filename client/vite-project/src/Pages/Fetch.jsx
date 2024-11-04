@@ -5,44 +5,44 @@ function Fetch() {
   const [text, setItems1] = useState([]);
   const [image, setItems2] = useState([]);
   const [load, setLoad] = useState(false);
-  const [data2, setTitle] = useState([]);
-  const [count, setCounter] = useState(0);
-  let counter = 0;
+  const [data2, setTitle] = useState(``);
+  const [counter, setCounter] = useState(0);
+  let localURL = "http://localhost:5000/api/";
+  let onlineURL = "https://adventure.api.binarybears.net/api/";
 
-  ShowSite();
   Fetch();
 
   async function Fetch() {
-    setTimeout(fetchText, 5000);
-    setTimeout(fetchImage, 10000);
+    setTimeout(fetchText, 20000);
+    setTimeout(fetchImage, 20000);
   }
 
   function fetchText() {
-    fetch(`http://localhost:5000/api/text/${counter}`)
+    fetch(`${localURL}text/${counter}`)
       .then((response1) => response1.json())
       .then((data1) => {
         setItems1(data1);
       })
       .catch((error) => {
-        console.log(error);
+        setTimeout(fetchText, 1000);
+        
       });
   }
 
   function fetchImage() {
-    fetch(`http://localhost:5000/api/image/${counter}`)
+    fetch(`${localURL}image/${counter}`)
       .then((response4) => response4.json())
       .then((data4) => {
         setItems2(data4);
-        if (image !== undefined || ``) {
-          setLoad(true);
-          ShowSite();
-        }
+        setLoad(true);
       })
       .catch((error) => {
-        console.log(error);
+        setTimeout(fetchImage, 1000);
         
       });
   }
+
+  
 
   let data = { data2 };
 
@@ -54,32 +54,63 @@ function Fetch() {
     },
   };
 
-  /*function optionThis(variable) {
-    if (data2 !== variable) {
-      setTitle(variable);
-    }
-    //setLoad(false);
-    console.log(data2);
+  function maybePost() {
+    
+    setLoad(false);
+    post();
+    
     setCounter((counter) => counter + 1);
-
     console.log(counter);
-  }*/
+    Fetch();
+  }
+
+  function maybePost1(variable) {
+    setTitle((data2) => data2 = text.option1)
+    setLoad(false);
+    setCounter((counter) => counter + 1);
+    post();
+    Fetch();
+    console.log("maybe");
+    console.log(counter);
+  }
+
+  function maybePost2(variable) {
+    
+    setTitle((data2) => data2 = text.option2)
+    setLoad(false);
+    setCounter((counter) => counter + 1);
+    post();
+    console.log(counter);
+
+    Fetch();
+    console.log("maybe");
+  }
+
+  function maybePost3(variable) {
+    setTitle((data2) => data2 = text.option3)
+    setLoad(false);
+    setCounter((counter) => counter + 1);
+    post();
+    console.log(counter);
+
+    Fetch();
+    console.log("maybe");
+  }
 
   async function post() {
-    setLoad(true);
-    let urlOption = "http://localhost:5000/api/option/0";
+    let urlOption = `${localURL}option/0`;
     try {
       fetch(urlOption, options)
         .then((response) => response.json())
         .then((json) => console.log(json));
       post2();
     } catch (error) {
-      console.log(error);
+      post();
     }
   }
 
   async function post2() {
-    let urlImage = "http://localhost:5000/api/image/0";
+    let urlImage = `${localURL}image/0`;
     try {
       fetch(urlImage, options)
         .then((response) => response.json())
@@ -87,41 +118,47 @@ function Fetch() {
 
       Fetch();
     } catch (error) {
-      console.log(error);
+      post2();
     }
   }
 
-  function ShowSite() {
-    if (load) {
-      return (
-        <>
-          <div className="fetch">
-            <img src={image}></img>
-            <p>{text.text}</p>
-            <button className="option">
-              {text.option1}
-            </button>
-            <button className="option">
-              {text.option2}
-            </button>
-            <button className="option">
-              {text.option3}
-            </button>
-            <br></br>
-            <textarea
+  if (load) {
+    return (
+      <>
+        <div className="fetch">
+          <img src={image}></img>
+          <p>{text.text}</p>
+          <p className="option">
+            {text.option1}
+          </p>
+          <p className="option">
+            {text.option2}
+          </p>
+          <p
+          className="option">
+            {text.option3}
+          </p>
+          <br></br>
+          <input
+              type="text"
               onChange={(event) => setTitle(event.target.value)}
-            ></textarea>
-            <button>Send</button>
-          </div>
-        </>
-      );
-    } else {
-      return(
-      <p>Loading</p>
+              placeholder="Geben Sie Ihre Eingabe ein"
+            />
+          <button onClick={maybePost}>Send</button>
+        </div>
+      </>
     );
-    }
+  } else {
+    return (
+      <>
+        <img
+          src="https://w7.pngwing.com/pngs/414/888/png-transparent-waiting-illustration-thumbnail.png"
+          className="App-logo"
+          alt="logo"
+        />
+      </>
+    );
   }
-  return <>{ShowSite()}</>;
 }
 
 export default Fetch;
