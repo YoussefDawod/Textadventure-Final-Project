@@ -3,14 +3,13 @@ import React, { useState, useEffect } from "react";
 
 function Fetch() {
   const [text, setItems1] = useState([]);
-  const [image, setItems2] = useState([]);
+  const [image, setItems2] = useState(``);
   const [load, setLoad] = useState(false);
+  const [loadThis, setLoadThis] = useState(false);
   const [data2, setTitle] = useState(``);
   const [counter, setCounter] = useState(0);
   let localURL = "http://localhost:5000/api/";
   let onlineURL = "https://adventure.api.binarybears.net/api/";
-
-  Fetch();
 
   async function Fetch() {
     setTimeout(fetchText, 20000);
@@ -22,10 +21,11 @@ function Fetch() {
       .then((response1) => response1.json())
       .then((data1) => {
         setItems1(data1);
+        
+    
       })
       .catch((error) => {
-        setTimeout(fetchText, 1000);
-        
+        console.log(error);
       });
   }
 
@@ -34,15 +34,12 @@ function Fetch() {
       .then((response4) => response4.json())
       .then((data4) => {
         setItems2(data4);
-        setLoad(true);
+        
       })
       .catch((error) => {
-        setTimeout(fetchImage, 1000);
-        
+        console.log(error);
       });
   }
-
-  
 
   let data = { data2 };
 
@@ -54,47 +51,20 @@ function Fetch() {
     },
   };
 
-  function maybePost() {
+  function PostThisSHIT() {
     
-    setLoad(false);
-    post();
-    
-    setCounter((counter) => counter + 1);
-    console.log(counter);
-    Fetch();
-  }
-
-  function maybePost1(variable) {
-    setTitle((data2) => data2 = text.option1)
+    console.log(image);
+        console.log(text);
+        console.log(data2);
+        
+    setItems1([]);
+    setItems2(``);
     setLoad(false);
     setCounter((counter) => counter + 1);
-    post();
-    Fetch();
-    console.log("maybe");
     console.log(counter);
-  }
-
-  function maybePost2(variable) {
-    
-    setTitle((data2) => data2 = text.option2)
-    setLoad(false);
-    setCounter((counter) => counter + 1);
     post();
-    console.log(counter);
-
+    setLoadThis(false);
     Fetch();
-    console.log("maybe");
-  }
-
-  function maybePost3(variable) {
-    setTitle((data2) => data2 = text.option3)
-    setLoad(false);
-    setCounter((counter) => counter + 1);
-    post();
-    console.log(counter);
-
-    Fetch();
-    console.log("maybe");
   }
 
   async function post() {
@@ -105,7 +75,7 @@ function Fetch() {
         .then((json) => console.log(json));
       post2();
     } catch (error) {
-      post();
+      console.log(error);
     }
   }
 
@@ -115,36 +85,46 @@ function Fetch() {
       fetch(urlImage, options)
         .then((response) => response.json())
         .then((json) => console.log(json));
-
-      Fetch();
     } catch (error) {
-      post2();
+      console.log(error);
     }
   }
+  function openLoad(){
+    Fetch();
+    setLoad(true);
+  }
 
+  function Check() {
+    if (!loadThis) {
+      Fetch();
+      setTimeout(openLoad, 20000);
+      setLoadThis(true);
+    }
+
+    if (image && (text.text || text.option1) !== ``) {
+      setLoad(true);
+    }
+    
+
+    
+  }
+  
   if (load) {
     return (
       <>
         <div className="fetch">
           <img src={image}></img>
-          <p>{text.text}</p>
-          <p className="option">
-            {text.option1}
-          </p>
-          <p className="option">
-            {text.option2}
-          </p>
-          <p
-          className="option">
-            {text.option3}
-          </p>
+          <p className="text">{text.text}</p>
+          <p className="option">{text.option1}</p>
+          <p className="option">{text.option2}</p>
+          <p className="option">{text.option3}</p>
           <br></br>
           <input
-              type="text"
-              onChange={(event) => setTitle(event.target.value)}
-              placeholder="Geben Sie Ihre Eingabe ein"
-            />
-          <button onClick={maybePost}>Send</button>
+            type="text"
+            onChange={(event) => setTitle(event.target.value)}
+            placeholder="Geben Sie Ihre Eingabe ein"
+          />
+          <button onClick={PostThisSHIT}>Send</button>
         </div>
       </>
     );
@@ -152,10 +132,11 @@ function Fetch() {
     return (
       <>
         <img
-          src="https://w7.pngwing.com/pngs/414/888/png-transparent-waiting-illustration-thumbnail.png"
+          src="../../Images/loading.png"
           className="App-logo"
           alt="logo"
         />
+        {Check()}
       </>
     );
   }

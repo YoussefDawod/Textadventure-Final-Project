@@ -20,7 +20,7 @@ const teamMembers = [
   },
   {
     name: "Kai",
-    image: `${PUBLIC_URL}/Team-Images/Kai.jpg`,
+    image: `${PUBLIC_URL}/Team-Images/Kai.png`,
     github: "https://github.com/DrApplebrain",
     linkedin: "https://www.linkedin.com/in/kai-apfel-1a75bb318/",
   },
