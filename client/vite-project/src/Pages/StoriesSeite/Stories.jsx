@@ -34,7 +34,7 @@ const Stories = ({ setOriginPage }) => {
   };
 
   return (
-    <main className="stories-background">
+    <main className="main-stories">
       <div className="stories-contents">
         <div className="create-scenario">
           <h2>Erstelle dein eigenes Szenario</h2>
