@@ -1,5 +1,5 @@
 import "../Styles/Test-Gamescreen.css";
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 function Fetch() {
   const [text, setItems1] = useState([]);
@@ -126,7 +126,7 @@ function Fetch() {
     return (
       <>
         <div className="fetch">
-          <img src={image}></img>
+        <img src={image} className="fetch-image"></img>
           <p>{text.text}</p>
           <p className="option">
             {text.option1}

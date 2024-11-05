@@ -1,5 +1,5 @@
 import "../Styles/Test-Gamescreen.css";
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import Fetch from "./Fetch";
 
 function Gamescreen() {
