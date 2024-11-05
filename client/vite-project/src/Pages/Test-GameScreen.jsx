@@ -1,67 +1,89 @@
-import { useState, useEffect, useCallback } from 'react';
-import { fetchText, postOption, fetchImage } from '../API/api';
+import "../Styles/Test-Gamescreen.css";
+import React, { useState, useEffect, useRef } from "react";
+import Fetch from "./Fetch";
 
-const GameScreen = () => {
-  const [currentText, setCurrentText] = useState('');
-  const [userInput, setUserInput] = useState('');
-  const [loading, setLoading] = useState(false);
-  const [image, setImage] = useState('');
+function Gamescreen() {
+  const [data1, setTitle] = useState();
+  let data = { data1 };
+  let localURL = "http://localhost:5000/api/"
+  let onlineURL = "https://adventure.api.binarybears.net/api/"
+  
+  const [load, setLoad] = useState(false);
+  
 
-  const startGame = useCallback(async () => {
-    setLoading(true);
-    try {
-      const initialText = await fetchText(0); // Initial text ID
-      setCurrentText(initialText.text);
-      const initialImage = await fetchImage(0); // Initial image ID
-      setImage(initialImage);
-    } catch (error) {
-      console.error('Failed to start game:', error);
-    } finally {
-      setLoading(false);
+  function Load() {
+    setLoad(true);
+  }
+
+  function onAccept() {
+    console.log(data);
+
+    let options = {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-type": "application/json",
+      },
+    };
+    Load();
+    post();
+
+    async function post() {
+      let urlOption = `${localURL}option/0`;
+      try {
+        fetch(urlOption, options)
+          .then((response) => response.json())
+          .then((json) => console.log(json));
+        post2();
+      } catch (error) {
+        console.log(error);
+      }
     }
-  }, []);
 
-  useEffect(() => {
-    startGame();
-  }, [startGame]);
+    async function post2() {
+      let urlImage = `${localURL}image/0`;
+      try {
+        fetch(urlImage, options)
+          .then((response) => response.json())
+          .then((json) => console.log(json));
+          
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  }
 
-  const submitInput = async () => {
-    if (!userInput.trim()) {
-      alert('Bitte geben Sie eine gültige Eingabe ein.');
-      return;
+  
+  function ShowSite() {
+    if (!load) {
+      return (
+        <>
+          <div className="post">
+            <input
+              type="text"
+              onChange={(event) => setTitle(event.target.value)}
+              placeholder="Geben Sie Ihre Eingabe ein"
+            />
+            <button onClick={() => onAccept()}>PLAY</button>
+          </div>
+        </>
+      );
     }
-    
-    setLoading(true);
-    try {
-      const userResponse = await postOption({ data1: userInput });
-      setCurrentText(userResponse.text);
-      setUserInput('');
-      const newImage = await fetchImage(0); // Fetch new image based on user input
-      setImage(newImage);
-    } catch (error) {
-      console.error('Failed to submit input:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
+    if (load) {
+      return (
+      <>
+        <Fetch></Fetch>
+      </>
+    );}
+  }
 
   return (
-    <div>
-      <div>
-        <p>{currentText}</p>
-        <img src={image} alt="Story related" />
-      </div>
-      <input
-        type="text"
-        id="userInput"
-        name="userInput"
-        value={userInput}
-        onChange={(e) => setUserInput(e.target.value)}
-        placeholder="Geben Sie Ihre Eingabe ein"
-      />
-      <button onClick={submitInput}>Senden</button>
-    </div>
+    <>
+      <h1>GameScreen</h1>
+      {ShowSite()}
+    </>
   );
-};
 
-export default GameScreen;
+}
+
+export default Gamescreen;
