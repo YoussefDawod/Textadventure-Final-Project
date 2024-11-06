@@ -1,7 +1,8 @@
 import "../Styles/Test-Gamescreen.css";
 import { useState, useEffect } from "react";
+import Icon from "../Components/Icons"; // Assuming you have an Icons component
 
-function Fetch() {
+function Fetch({ scenarioTitle, onExit }) {
   const [text, setItems1] = useState([]);
   const [image, setItems2] = useState([]);
   const [load, setLoad] = useState(false);
@@ -10,9 +11,11 @@ function Fetch() {
   let localURL = "http://localhost:5000/api/";
   let onlineURL = "https://adventure.api.binarybears.net/api/";
 
-  Fetch();
+  useEffect(() => {
+    FetchData();
+  }, [counter]);
 
-  async function Fetch() {
+  async function FetchData() {
     setTimeout(fetchText, 20000);
     setTimeout(fetchImage, 20000);
   }
@@ -25,7 +28,6 @@ function Fetch() {
       })
       .catch((error) => {
         setTimeout(fetchText, 1000);
-        
       });
   }
 
@@ -38,11 +40,8 @@ function Fetch() {
       })
       .catch((error) => {
         setTimeout(fetchImage, 1000);
-        
       });
   }
-
-  
 
   let data = { data2 };
 
@@ -55,45 +54,40 @@ function Fetch() {
   };
 
   function maybePost() {
-    
     setLoad(false);
     post();
-    
     setCounter((counter) => counter + 1);
     console.log(counter);
-    Fetch();
+    FetchData();
   }
 
   function maybePost1(variable) {
-    setTitle((data2) => data2 = text.option1)
+    setTitle((data2) => (data2 = text.option1));
     setLoad(false);
     setCounter((counter) => counter + 1);
     post();
-    Fetch();
+    FetchData();
     console.log("maybe");
     console.log(counter);
   }
 
   function maybePost2(variable) {
-    
-    setTitle((data2) => data2 = text.option2)
+    setTitle((data2) => (data2 = text.option2));
     setLoad(false);
     setCounter((counter) => counter + 1);
     post();
     console.log(counter);
-
-    Fetch();
+    FetchData();
     console.log("maybe");
   }
 
   function maybePost3(variable) {
-    setTitle((data2) => data2 = text.option3)
+    setTitle((data2) => (data2 = text.option3));
     setLoad(false);
     setCounter((counter) => counter + 1);
     post();
     console.log(counter);
-
-    Fetch();
+    FetchData();
     console.log("maybe");
   }
 
@@ -115,8 +109,7 @@ function Fetch() {
       fetch(urlImage, options)
         .then((response) => response.json())
         .then((json) => console.log(json));
-
-      Fetch();
+      FetchData();
     } catch (error) {
       post2();
     }
@@ -126,36 +119,44 @@ function Fetch() {
     return (
       <>
         <div className="fetch">
-        <img src={image} className="fetch-image"></img>
-          <p>{text.text}</p>
-          <p className="option">
+          <div className="exit-button" onClick={onExit}>
+            <Icon type="exit" />
+          </div>
+          <h2>{scenarioTitle}</h2>
+          <img src={image} className="fetch-image" alt="fetch" />
+          <p className="story">{text.text}</p>
+          <p className="option" onClick={() => maybePost1()}>
             {text.option1}
           </p>
-          <p className="option">
+          <p className="option" onClick={() => maybePost2()}>
             {text.option2}
           </p>
-          <p
-          className="option">
+          <p className="option" onClick={() => maybePost3()}>
             {text.option3}
           </p>
-          <br></br>
+          <div className="user-interaction">
           <input
-              type="text"
-              onChange={(event) => setTitle(event.target.value)}
-              placeholder="Geben Sie Ihre Eingabe ein"
-            />
-          <button onClick={maybePost}>Send</button>
+            type="text"
+            onChange={(event) => setTitle(event.target.value)}
+            placeholder="Geben Sie Ihre Eingabe ein"
+          />
+          <div onClick={maybePost}>
+            <Icon type="send" />
+          </div>
+          </div>
         </div>
       </>
     );
   } else {
     return (
       <>
-        <img
-          src="https://w7.pngwing.com/pngs/414/888/png-transparent-waiting-illustration-thumbnail.png"
-          className="App-logo"
-          alt="logo"
-        />
+        <div className="loading-overlay">
+          <img
+            src="/Logo/tia-logo.svg"
+            className="loading-logo"
+            alt="loading"
+          />
+        </div>
       </>
     );
   }

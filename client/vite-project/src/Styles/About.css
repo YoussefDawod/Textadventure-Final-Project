@@ -39,8 +39,13 @@
   box-shadow: var(--box-shadow);
 }
 
+.social-icons {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 0.5rem 0 0.5rem;
+}
+
 .social-icons a {
-  display: block;
   margin-top: 5px;
   text-decoration: none;
   color: var(--primary-color);

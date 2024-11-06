@@ -44,12 +44,10 @@ const ScenarioCard = ({ scenario, onLike, onSave, onPlay }) => {
       </div>
       <div className="scenario-content">
         <h3>{scenario.title}</h3>
-        <p>{scenario.description}</p>
       </div>
       <div className="scenario-actions">
         <div onClick={handleLike}>
-          <Icon type="heart" style={{ color: isLiked ? "red" : "inherit" }} /> (
-          {scenario.likes})
+          <Icon type="heart" style={{ color: isLiked ? "red" : "inherit" }} /> 
         </div>
         <div onClick={handleSave}>
           <Icon type="save" style={{ color: isSaved ? "blue" : "inherit" }} />
@@ -65,9 +63,7 @@ const ScenarioCard = ({ scenario, onLike, onSave, onPlay }) => {
 ScenarioCard.propTypes = {
   scenario: PropTypes.shape({
     title: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
     image: PropTypes.string,
-    likes: PropTypes.number.isRequired,
     id: PropTypes.number.isRequired,
   }).isRequired,
   onLike: PropTypes.func.isRequired,

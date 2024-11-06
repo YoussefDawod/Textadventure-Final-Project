@@ -104,7 +104,6 @@ const Profile = ({
                     <img src={image} alt={title} className="scenario-image" />
                     <div className="scenario-details">
                       <h4>{title}</h4>
-                      <p>{description}</p>
                       <div className="button-group">
                         <div onClick={() => playScenario(id, title)}>
                           <Icon type="play" />
