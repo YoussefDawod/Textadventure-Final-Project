@@ -6,9 +6,11 @@ import initialScenarios from '../Scenarios/scenarios.js';
 const Forum = () => {
   const [threads, setThreads] = useState([]);
   const [newThread, setNewThread] = useState('');
+  const [newDescription, setNewDescription] = useState('');
   const [threadImage, setThreadImage] = useState(null);
-  const [isDescending, setIsDescending] = useState(true);
+  const [sortOption, setSortOption] = useState('likesDesc');
   const navigate = useNavigate();
+  const maxDescriptionLength = 240;
 
   useEffect(() => {
     const savedThreads = JSON.parse(localStorage.getItem('threads'));
@@ -26,11 +28,11 @@ const Forum = () => {
   };
 
   const handleAddThread = () => {
-    if (newThread.trim()) {
+    if (newThread.trim() && newDescription.trim()) {
       const newScenario = {
         id: threads.length + 1,
         title: newThread,
-        description: "Dies ist eine neue Themenbeschreibung.",
+        description: newDescription,
         likes: 0,
         image: threadImage ? URL.createObjectURL(threadImage) : "/default-image.png",
         comments: []
@@ -39,6 +41,7 @@ const Forum = () => {
       const updatedThreads = [...threads, newScenario];
       saveThreadsToLocalStorage(updatedThreads);
       setNewThread('');
+      setNewDescription('');
       setThreadImage(null);
     }
   };
@@ -47,12 +50,24 @@ const Forum = () => {
     navigate(`/thread/${thread.id}`, { state: { thread } });
   };
 
-  const toggleSortOrder = () => {
-    const newOrder = !isDescending;
-    setIsDescending(newOrder);
-    const sortedThreads = [...threads].sort((a, b) => 
-      newOrder ? b.likes - a.likes : a.likes - b.likes
-    );
+  const handleSort = () => {
+    const sortedThreads = [...threads];
+    switch (sortOption) {
+      case 'likesDesc':
+        sortedThreads.sort((a, b) => b.likes - a.likes);
+        break;
+      case 'likesAsc':
+        sortedThreads.sort((a, b) => a.likes - b.likes);
+        break;
+      case 'titleAsc':
+        sortedThreads.sort((a, b) => a.title.localeCompare(b.title));
+        break;
+      case 'titleDesc':
+        sortedThreads.sort((a, b) => b.title.localeCompare(a.title));
+        break;
+      default:
+        break;
+    }
     setThreads(sortedThreads);
   };
 
@@ -66,44 +81,64 @@ const Forum = () => {
   return (
     <main>
       <div className="forum-container">
-      <h1>Forum</h1>
-      <input
-        type="text"
-        value={newThread}
-        onChange={(e) => setNewThread(e.target.value)}
-        placeholder="Füge ein neues Thema hinzu"
-      />
-     <div className='thread-image-upload'>
-     <label htmlFor="imageUpload" className="upload-label">
-          Bild
-        </label>
-        <input 
-          id="imageUpload"
-          type="file" 
-          accept="image/*" 
-          onChange={handleImageChange}
-          style={{ display: 'none' }}
-        />
-      <button onClick={handleAddThread} id='addThreadBtn'>Hinzufügen</button>
-     </div>
-      <button onClick={toggleSortOrder}>
-        Nach Likes sortieren: {isDescending ? 'Absteigend' : 'Aufsteigend'}
-      </button>
-      <ul>
-        {threads.map((thread) => (
-          <li
-            className="thread-title"
-            key={thread.id}
-            onClick={() => handleOpenThread(thread)}
-            style={{ backgroundImage: `url(${thread.image})` }}
+        <h1>Forum</h1>
+        <div className="forum-header">
+          <input
+            type="text"
+            value={newThread}
+            onChange={(e) => setNewThread(e.target.value)}
+            placeholder="Füge ein neues Thema hinzu"
+            className="new-thread-input"
+            id='threadTitle'
+          />
+          <textarea
+            value={newDescription}
+            onChange={(e) => setNewDescription(e.target.value.slice(0, maxDescriptionLength))}
+            placeholder="Füge eine Beschreibung hinzu (max. 240 Zeichen)"
+            maxLength={maxDescriptionLength}
+            className="new-thread-textarea"
+            id='desc'
+          />
+          <div id="char-counter" className="char-counter comment-count">
+            {maxDescriptionLength - newDescription.length} / {maxDescriptionLength} Zeichen übrig
+          </div>
+          <label htmlFor="imageUpload" className="upload-label " id='threadLabel'>Bild</label>
+          <input 
+            id="imageUpload"
+            type="file" 
+            accept="image/*" 
+            onChange={handleImageChange}
+            style={{ display: 'none' }}
+          />
+          <button onClick={handleAddThread} id='addThreadBtn'>Hinzufügen</button>
+        </div>
+        <div className="sort-controls">
+          <select
+            value={sortOption}
+            onChange={(e) => setSortOption(e.target.value)}
           >
-            <h3>{thread.title}</h3>
-            <p>{thread.description}</p>
-            <span>{thread.likes} Likes</span>
-          </li>
-        ))}
-      </ul>
-    </div>
+            <option value="likesDesc">Nach Likes absteigend</option>
+            <option value="likesAsc">Nach Likes aufsteigend</option>
+            <option value="titleAsc">Titel alphabetisch aufsteigend</option>
+            <option value="titleDesc">Titel alphabetisch absteigend</option>
+          </select>
+          <button onClick={handleSort}>Sortieren</button>
+        </div>
+        <ul>
+          {threads.map((thread) => (
+            <li
+              className="thread-title"
+              key={thread.id}
+              onClick={() => handleOpenThread(thread)}
+              style={{ backgroundImage: `url(${thread.image})` }}
+            >
+              <h3>{thread.title}</h3>
+              <p>{thread.description}</p>
+              <span>{thread.likes} Likes</span>
+            </li>
+          ))}
+        </ul>
+      </div>
     </main>
   );
 };

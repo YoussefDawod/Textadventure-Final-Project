@@ -1,7 +1,7 @@
 .forum-container {
     margin: auto;
     max-width: 1000px;
-    padding: 100px 0 10px 0;
+    padding: 0px 0 10px 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -57,23 +57,52 @@
     cursor: pointer;
 }
 
+#thread-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin: 10px 0;
+    box-shadow: 0px 0px 15px hsla(0, 0%, 0%, 0.3);
+}
+
+.new-thread-textarea, .new-thread-input {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #ddd;
+    border-radius: 0;
+    outline: none;
+    resize: none;
+    width: 70%;
+}
+
 .thread-detail-container {
     padding: 100px 0 0 0;
-    display: flex;
-    flex-direction: column;
-    max-width: 700px;
-    margin: 0 auto;
-    align-content: center;
-    gap: 15px;
+    
 }
 
 .like-dislike-buttons {
     display: flex;
     gap: 10px;
     justify-content: center;
+    align-items: center;
 }
+
+.thread-likes {
+    background-color: hsla(0, 0%, 0%, 0.3);
+    padding: 10px;
+    border-radius: 50%;
+    box-shadow: 0px 0px 15px hsla(0, 0%, 0%, 0.3);
+    border: 1px solid hsla(0, 0%, 0%, 0.5);
+}
+
 .comment-list {
     list-style: none;
+}
+
+button {   
+    box-shadow: 0px 0px 10px hsla(0, 0%, 0%, 0.3);
+    padding: 5px 10px;
 }
 
 .comment-container {
@@ -144,8 +173,13 @@
     margin: 10px 0;
     position: relative;
     height: 200px; 
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
 
+  .thread-title:hover {
+    transform: scale(1.05) translateY(-5px); 
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3); 
+  }
 
 .thread-title h3, .thread-title p, .thread-title span {
     position: relative;
@@ -177,7 +211,8 @@
 }
 
 #comment-input {
-    width: 100%
+    width: 100%;
+    resize: none;
 }
 
 .thread-image-upload {
@@ -186,24 +221,16 @@
 }
 
 .thread-image-upload > * {
-    margin: 0 auto;
+
     width: 100px;
 }
 
-.upload-label{
-    background-color: hsla(0, 0%, 100%, 0.6);
-    border-radius: 15px;
-}
-
 .upload-label:hover {
-    background-color: hsla(0, 0%, 100%, 0.8);
+    background-color: hsla(0, 0%, 0%, 0.8);
     cursor: pointer;
     box-shadow: 0 0 5px  white
 }
 
-#addThreadBtn {
-    border-radius: 15px;
-}
 
 #comment-submit {
     padding: 5px 0;
@@ -235,5 +262,27 @@
 ;}
 
 .upload-label {
+    background-color: hsla(0, 0%, 0%, 0.6);
     text-align: center;
+    border-radius: 15px;
+}
+
+.forum-header {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    border-radius: 10px;
+
+}
+
+.forum-header > * {
+    width: 60vw;
+}
+
+
+.sort-controls {
+    display: flex;
+    gap: 10px;
 }
