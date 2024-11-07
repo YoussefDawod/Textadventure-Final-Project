@@ -18,6 +18,7 @@ const ThemenAnsicht = () => {
   const defaultUserImage = "https://via.placeholder.com/50";
   const defaultDate = "01.01.2024";
   const defaultTime = "12:00";
+  const maxCommentLength = 240;
 
   useEffect(() => {
     if (!localThread) {
@@ -114,6 +115,10 @@ const ThemenAnsicht = () => {
     navigate(-1);
   };
 
+  const handleCommentChange = (e) => {
+    setNewComment(e.target.value);
+  };
+
   if (!localThread) return <p>Lade Thread-Daten...</p>;
 
   return (
@@ -151,9 +156,9 @@ const ThemenAnsicht = () => {
                 />
                 <div className="comment-user">{comment.user}</div>
               </div>
-              <div className="comment-main">                
+              <div className="comment-main">
+              <div className="comment-text">{comment.text}</div>                
                 <div className="comment-date">{comment.date || defaultDate} um {comment.time || defaultTime}</div>
-                <div className="comment-text">{comment.text}</div>
               </div>
             </li>
           ))}
@@ -162,7 +167,7 @@ const ThemenAnsicht = () => {
         <p>Keine Kommentare vorhanden</p>
       )}
       <div className="comment-form">
-        <label htmlFor="comment-input-name">Name:
+        <label className="comment-input-name-label" htmlFor="comment-input-name">Name:
           <input
             id="comment-input-name"
             type="text"
@@ -172,7 +177,7 @@ const ThemenAnsicht = () => {
           />
         </label>
         <div className="comment-image-upload">
-          <label htmlFor="comment-input-image">Bild hochladen:</label>
+          <label className="upload-label" htmlFor="comment-input-image">Bild hochladen:</label>
           <input
             id="comment-input-image"
             type="file"
@@ -184,9 +189,13 @@ const ThemenAnsicht = () => {
         <textarea
           id="comment-input"
           value={newComment}
-          onChange={(e) => setNewComment(e.target.value)}
+          onChange={handleCommentChange}
           placeholder="Kommentar hinzufügen"
+          maxLength={maxCommentLength}
         />
+        <div className="comment-count">
+          {maxCommentLength - newComment.length} / {maxCommentLength} Zeichen übrig
+        </div>
         <button onClick={handleAddComment}>Kommentar hinzufügen</button>
       </div>
     </div>
