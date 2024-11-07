@@ -156,9 +156,9 @@ const ThemenAnsicht = () => {
                 />
                 <div className="comment-user">{comment.user}</div>
               </div>
-              <div className="comment-main">                
+              <div className="comment-main">
+              <div className="comment-text">{comment.text}</div>                
                 <div className="comment-date">{comment.date || defaultDate} um {comment.time || defaultTime}</div>
-                <div className="comment-text">{comment.text}</div>
               </div>
             </li>
           ))}
@@ -177,7 +177,7 @@ const ThemenAnsicht = () => {
           />
         </label>
         <div className="comment-image-upload">
-          <label htmlFor="comment-input-image">Bild hochladen:</label>
+          <label className="upload-label" htmlFor="comment-input-image">Bild hochladen:</label>
           <input
             id="comment-input-image"
             type="file"

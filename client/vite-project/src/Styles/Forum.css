@@ -114,15 +114,24 @@
     justify-content: space-between;
     width: 100%;
     padding: 0 0 0 20px;
+    overflow: hidden;
 }
 .comment-text {
     align-self: flex-start;
+    text-align: justify;
+    overflow-wrap: break-word;
+    max-width: 100%;
+    white-space: pre-wrap;
 }
 
 .comment-date {
     font-size: 12px;
     align-self: flex-end;
     font-style: italic;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
 }
 
 .thread-title {
@@ -165,7 +174,6 @@
     border-bottom: 1px solid #ddd;
     border-radius: 0;
     outline: none;
-    padding: 0 0 5px 0;
 }
 
 #comment-input {
@@ -206,7 +214,12 @@
     flex-direction: column;
     gap: 20px;
     width: 100%;
-    padding: 10px 20px;
+    padding: 15px 20px 10px 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    margin: 0 auto 10px;
+    background-color: hsla(0, 0%, 100%, 0.6);
+    box-shadow: 0px 0px 15px hsla(0, 0%, 0%, 0.3);
 }
 
 .comment-image-upload {
@@ -220,3 +233,7 @@
     justify-content: flex-end;
     font-size: 0.8em;    
 ;}
+
+.upload-label {
+    text-align: center;
+}
