@@ -53,10 +53,13 @@
   cursor: pointer;
   color: var(--secondary-color);
   font-family: var(--font-mono);
+  padding: 0.5rem;
 }
 
 .option:hover {
   color: var(--highlight-color);
+  background-color: var(--secondary-background-color);
+  border-radius: var(--border-radius);
 }
 
 .user-interaction {
