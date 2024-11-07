@@ -13,6 +13,8 @@ import Register from "./Pages/Register";
 import About from "./Pages/About";
 import Stories from "./Pages/StoriesSeite/Stories";
 import GameScreen from "./Pages/StoriesSeite/GameScreen";
+import Forum from "./Pages/Forum"; 
+import ThemenAnsicht from "./Pages/ThemenAnsicht";
 import Header from "./Components/Header";
 import Footer from "./Components/Footer";
 import NoHeaderFooterLayout from "./Components/NoHeaderFooterLayout";
@@ -68,6 +70,8 @@ function App() {
                 <Header />
                 <Routes>
                   <Route path="/" element={<Home />} />
+                  <Route path="/forum" element={<Forum />} />
+                  <Route path="/thread/:topicId" element={<ThemenAnsicht />} />
                   <Route
                     path="/profile"
                     element={
