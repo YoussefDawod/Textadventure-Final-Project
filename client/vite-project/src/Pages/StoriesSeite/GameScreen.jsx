@@ -117,14 +117,14 @@ function GameScreen({ scenarioTitle, onExit }) {
 
   return (
     <>
-      <div className="exit-button" onClick={onExit}>
+      <div className="header-gameScreen" onClick={onExit}>
+        <h2>{scenarioTitle}</h2>
         <Icon type="exit" />
       </div>
       <main className="main-gameScreen">
         <div className="game-screen">
           {load ? (
             <div className="story-content">
-              <h2>{scenarioTitle}</h2>
               <img src={image} className="story-image" alt="fetch" />
               <p className="story-text">{text.text}</p>
               <div className="story-options">

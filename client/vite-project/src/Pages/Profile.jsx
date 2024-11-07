@@ -98,7 +98,7 @@ const Profile = ({
           <div className="scenario-container">
             {likedScenarios.length > 0 ? (
               likedScenarios.map((id, index) => {
-                const { title, description, image } = getScenarioDetails(id);
+                const { title, image } = getScenarioDetails(id);
                 return (
                   <div key={index} className="scenario">
                     <img src={image} alt={title} className="scenario-image" />
