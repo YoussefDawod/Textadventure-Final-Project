@@ -124,7 +124,7 @@ const ThemenAnsicht = () => {
   return (
     <div className="thread-detail-container">
       <button onClick={handleGoBack}>Zurück</button>
-      <img src={localThread.image} alt={localThread.title} />
+      <img id="thread-image" src={localThread.image} alt={localThread.title} />
       <div className="thread-description">
         <h1>{localThread.title}</h1>
         <p>{localThread.description}</p>
@@ -134,8 +134,9 @@ const ThemenAnsicht = () => {
         <button 
           onClick={handleLike}
         >
-          👍 Like ({likes})
+          👍 Like
         </button>
+         <div className='thread-likes'>{likes}</div>
         <button 
           onClick={handleDislike}
         >
@@ -174,6 +175,7 @@ const ThemenAnsicht = () => {
             value={userName}
             onChange={(e) => setUserName(e.target.value)}
             placeholder="Dein Name"
+            maxLength={15}
           />
         </label>
         <div className="comment-image-upload">
