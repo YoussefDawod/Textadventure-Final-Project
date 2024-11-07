@@ -64,7 +64,8 @@ const Forum = () => {
   };
 
   return (
-    <div className="forum-container">
+    <main>
+      <div className="forum-container">
       <h1>Forum</h1>
       <input
         type="text"
@@ -103,6 +104,7 @@ const Forum = () => {
         ))}
       </ul>
     </div>
+    </main>
   );
 };
 
