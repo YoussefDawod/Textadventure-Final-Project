@@ -155,13 +155,12 @@
     font-size: 1em;
   }
 
-#comment-input-name {
+.comment-input-name-label {
     background: transparent;
-    border: none;
-    border-bottom: 1px solid #ddd;
     border-radius: 0;
-    outline: none;
+    color: red;
     padding: 0 0 5px 0;
+    margin: 0 auto;
 }
 
 #comment-input {
@@ -193,11 +192,6 @@
     border-radius: 15px;
 }
 
-#addThreadBtn:hover {
-    
-}
-
-
 #comment-submit {
     padding: 5px 0;
 }
@@ -214,7 +208,10 @@
     display: flex;
     gap: 20px;
     padding: 10px 20px;
-    width: 100%;
-    align-items: center;
     margin: 0 auto;
 }
+.comment-count {
+    display: flex;
+    justify-content: flex-end;
+    font-size: 0.8em;    
+;}
