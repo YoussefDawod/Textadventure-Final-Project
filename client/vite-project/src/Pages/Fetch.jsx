@@ -4,18 +4,23 @@ import Icon from "../Components/Icons"; // Assuming you have an Icons component
 
 function Fetch({ scenarioTitle, onExit }) {
   const [text, setItems1] = useState([]);
-  const [image, setItems2] = useState([]);
+  const [image, setItems2] = useState(``);
   const [load, setLoad] = useState(false);
+  const [loadThis, setLoadThis] = useState(false);
   const [data2, setTitle] = useState(``);
   const [counter, setCounter] = useState(0);
   let localURL = "http://localhost:5000/api/";
   let onlineURL = "https://adventure.api.binarybears.net/api/";
 
+<<<<<<< HEAD
   useEffect(() => {
     FetchData();
   }, [counter]);
 
   async function FetchData() {
+=======
+  async function Fetch() {
+>>>>>>> kai
     setTimeout(fetchText, 20000);
     setTimeout(fetchImage, 20000);
   }
@@ -25,9 +30,15 @@ function Fetch({ scenarioTitle, onExit }) {
       .then((response1) => response1.json())
       .then((data1) => {
         setItems1(data1);
+        
+    
       })
       .catch((error) => {
+<<<<<<< HEAD
         setTimeout(fetchText, 1000);
+=======
+        console.log(error);
+>>>>>>> kai
       });
   }
 
@@ -36,10 +47,14 @@ function Fetch({ scenarioTitle, onExit }) {
       .then((response4) => response4.json())
       .then((data4) => {
         setItems2(data4);
-        setLoad(true);
+        
       })
       .catch((error) => {
+<<<<<<< HEAD
         setTimeout(fetchImage, 1000);
+=======
+        console.log(error);
+>>>>>>> kai
       });
   }
 
@@ -53,6 +68,7 @@ function Fetch({ scenarioTitle, onExit }) {
     },
   };
 
+<<<<<<< HEAD
   function maybePost() {
     setLoad(false);
     post();
@@ -89,6 +105,22 @@ function Fetch({ scenarioTitle, onExit }) {
     console.log(counter);
     FetchData();
     console.log("maybe");
+=======
+  function PostThisSHIT() {
+    
+    console.log(image);
+        console.log(text);
+        console.log(data2);
+        
+    setItems1([]);
+    setItems2(``);
+    setLoad(false);
+    setCounter((counter) => counter + 1);
+    console.log(counter);
+    post();
+    setLoadThis(false);
+    Fetch();
+>>>>>>> kai
   }
 
   async function post() {
@@ -99,7 +131,7 @@ function Fetch({ scenarioTitle, onExit }) {
         .then((json) => console.log(json));
       post2();
     } catch (error) {
-      post();
+      console.log(error);
     }
   }
 
@@ -109,16 +141,39 @@ function Fetch({ scenarioTitle, onExit }) {
       fetch(urlImage, options)
         .then((response) => response.json())
         .then((json) => console.log(json));
+<<<<<<< HEAD
       FetchData();
+=======
+>>>>>>> kai
     } catch (error) {
-      post2();
+      console.log(error);
     }
   }
+  function openLoad(){
+    Fetch();
+    setLoad(true);
+  }
 
+  function Check() {
+    if (!loadThis) {
+      Fetch();
+      setTimeout(openLoad, 20000);
+      setLoadThis(true);
+    }
+
+    if (image && (text.text || text.option1) !== ``) {
+      setLoad(true);
+    }
+    
+
+    
+  }
+  
   if (load) {
     return (
       <>
         <div className="fetch">
+<<<<<<< HEAD
           <div className="exit-button" onClick={onExit}>
             <Icon type="exit" />
           </div>
@@ -135,21 +190,34 @@ function Fetch({ scenarioTitle, onExit }) {
             {text.option3}
           </p>
           <div className="user-interaction">
+=======
+          <img src={image}></img>
+          <p className="text">{text.text}</p>
+          <p className="option">{text.option1}</p>
+          <p className="option">{text.option2}</p>
+          <p className="option">{text.option3}</p>
+          <br></br>
+>>>>>>> kai
           <input
             type="text"
             onChange={(event) => setTitle(event.target.value)}
             placeholder="Geben Sie Ihre Eingabe ein"
           />
+<<<<<<< HEAD
           <div onClick={maybePost}>
             <Icon type="send" />
           </div>
           </div>
+=======
+          <button onClick={PostThisSHIT}>Send</button>
+>>>>>>> kai
         </div>
       </>
     );
   } else {
     return (
       <>
+<<<<<<< HEAD
         <div className="loading-overlay">
           <img
             src="/Logo/tia-logo.svg"
@@ -157,6 +225,14 @@ function Fetch({ scenarioTitle, onExit }) {
             alt="loading"
           />
         </div>
+=======
+        <img
+          src="../../Images/loading.png"
+          className="App-logo"
+          alt="logo"
+        />
+        {Check()}
+>>>>>>> kai
       </>
     );
   }
