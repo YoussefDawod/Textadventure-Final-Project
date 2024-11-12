@@ -79,7 +79,7 @@ const Forum = () => {
   };
 
   return (
-    <main>
+    <main className='forum-main'>
       <div className="forum-container">
         <h1>Forum</h1>
         <div className="forum-header">

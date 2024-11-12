@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import "../Styles/Forum.css";
 
@@ -122,7 +122,8 @@ const ThemenAnsicht = () => {
   if (!localThread) return <p>Lade Thread-Daten...</p>;
 
   return (
-    <div className="thread-detail-container">
+    <main className='thread-main'>
+      <div className="thread-detail-container">
       <button onClick={handleGoBack}>Zurück</button>
       <img id="thread-image" src={localThread.image} alt={localThread.title} />
       <div className="thread-description">
@@ -201,6 +202,7 @@ const ThemenAnsicht = () => {
         <button onClick={handleAddComment}>Kommentar hinzufügen</button>
       </div>
     </div>
+    </main>
   );
 };
 
