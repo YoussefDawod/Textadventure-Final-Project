@@ -4,13 +4,13 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-  "dev": "vite",
-  "build": "vite build",
-  "lint": "eslint .",
-  "preview": "vite preview",
-  "serve": "serve -s dist",
-  "deploy": "vite build && gh-pages -d dist"
-},
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview",
+    "serve": "serve -s dist",
+    "deploy": "vite build && gh-pages -d dist"
+  },
   "dependencies": {
     "@fontsource/gugi": "^5.1.0",
     "@fontsource/orbitron": "^5.1.0",
